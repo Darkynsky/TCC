@@ -17,10 +17,10 @@ class ProdutoController extends Controller
         $produto = Produto::all();
         return view('vender', compact('produto'));
     }
-    public function index2()
+    public function indexjson()
     {        
         $produto = Produto::all();
-        return view('precificador', compact('produto'));
+        return $produto;
     }
 
     /**

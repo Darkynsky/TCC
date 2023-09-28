@@ -17,6 +17,11 @@ class IngredientesController extends Controller
         $ingredientes = Ingredientes::all();
         return view('precificador', compact('ingredientes'));
     }
+    public function indexjson()
+    {        
+        $ingredientes = Ingredientes::all();
+        return $ingredientes;
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -55,8 +60,7 @@ class IngredientesController extends Controller
      */
     public function show($id)
     {
-        $ingredientes = Ingredientes::all();
-        return $ingredientes;
+        //
     }
 
     /**
@@ -91,5 +95,8 @@ class IngredientesController extends Controller
     public function destroy($id)
     {
         //
+        $ingredientes = Ingredientes::where('idIngrediente',$id)->delete();
+        return redirect()->action('precificador');
     }
+
 }

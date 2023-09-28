@@ -32,6 +32,9 @@ header{
 .img_logo:hover{
     box-shadow: 0 0 50px var(--cor-1);
 }
+.icon_acoes{
+    width: 2.7vh;
+}
 nav{
     text-align: center;
     padding: .1%;
@@ -46,6 +49,7 @@ nav button{
     background: var(--cor-5);
     color: var(--cor-6);
     border: solid 1px var(--cor-6);
+
 }
 nav button:hover{
     color: var(--cor-5);
@@ -94,6 +98,7 @@ footer{
     border-radius: 5px;
 }
 .lista_ingredientes th{
+    padding: .5%;
     background: var(--cor-4);
     color: var(--cor-5);
     border-radius: 5px;
@@ -105,11 +110,18 @@ footer{
     background: var(--cor-5);
     color: var(--cor-2);
     border-radius: 5px;
+    text-wrap: wrap;
 }
-.lista_ingredientes td  input[type=number]{
+.lista_ingredientes td p{
+    text-align: left;
+    text-wrap: wrap;
+    width: 10vmax;
+}
+.lista_ingredientes td  input[type=text]{
+    outline: none;
     border-radius: 5px;
     border: none;
-    width: 10vmax;
+    width: 3vmax;
     background: transparent;
     color: var(--cor-2);
     text-align: center;
@@ -134,7 +146,7 @@ footer{
     border-radius: 5px;
 
 }
-.tb_precificador_produto input[type=number]{
+.tb_precificador_produto input[type=text]{
     border-radius: 5px;
     border: none;
     width: 10vmax;
@@ -210,17 +222,13 @@ select{
     justify-content: center;
     width: 20vh;
     border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    align-content: space-around;
-    justify-content: space-between;
 }
 .produto_part1exibe{
     width: 100%;
 }
 .produto_part2exibe{
     width: 100%;
-    height: auto;
+    height: 5vmax;
     text-align: left;
     text-wrap: wrap;
 }

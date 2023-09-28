@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="/js/scriptprecificador.js"></script>
+    <script src="/js/scriptprecificador.js"></script>    
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <title>Document</title>
+    <title>PattiBrigaderia</title>
 </head>
-
 <body>
     <header>
         <a href="/">
@@ -16,150 +14,123 @@
         </a>
     </header>
     <nav>
-        <!-- MENU DE ACESSO PARA OUTRAS PÁGINAS -->
-        <a href="/"><button>Home</button></a> 
-        <a href="precificador"><button>Precificar</button></a> 
+        <a href="/"><button>Home</button></a>
+        <a href="precificador"><button>Precificar</button></a>
         <a href="vender"><button>Vender</button></a>
         <a href=""><button>Visualizar Vendas</button></a>
     </nav>
 
-    <div class="content"> <!-- CONTEÚDO DE PRECIFICAÇÃO E INSERÇÃO -->
-        <div class="container_A"><!-- INSERÇÃO E CONSULTA DE INGREDIENTES -->
-            
-            <form method="POST" action="/ingrediente" class="formI"><!-- FORMULÁRIO PARA INSERÇÃO DOS INGREDIENTES -->
-            {{ csrf_field() }}
-                <input type="text" name="txIngrediente" placeholder="Ingrediente">
-                <input type="number" name="txQuantidade" placeholder="Qtd(g)">
-                <input type="number" name="txCusto" placeholder="Custo" step="0.01" min="0">
-                <input type="submit" value="Salvar">
-            </form>
+    <div class="content">
 
-            <table class="lista_ingredientes"> <!-- FORMULÁRIO PARA CONSULTA DOS INGREDIENTES (REAJUSTE)-->
+        <div class="container_A">
+
+            <table class="lista_ingredientes">
                 <tr>
-
+                    <th colspan="7">Tabela de Ingredientes</th>
                 </tr>
                 <tr>
-                    <th>Ingrediente</th>
-                    <th>Quantidade(g)</th>
-                    <th>Custo</th>
-                    <th>Quantidade<br/> necessária(g)</th>
-                    <th>Custo usado</th>
+                    <th>ingrediente</th>
+                    <th>Quantidade (g)</th>
+                    <th>Custo (R$)</th>
+                    <th>Custo por grama</th>
+                    <th>Quantidade(g) utilizada</th>
+                    <th>Custo Final (R$)</th>
+                    <th>Ações</th>
                 </tr>
-                @foreach ($ingredientes as $c)
+                @foreach ($ingredientes as $i)
                 <tr>
-                    <td>{{ $c->ingrediente }}</td>
-                    <td>{{ $c->quantidade }}</td>
+                    <td><p>{{ $i->ingrediente }}<p></td>
+                    <td><input type="text" id="QTD_TBI_{{ $i->idIngrediente }}" value="{{ $i->quantidade }}" readonly="readonly"></td><!--Quantidade (A)-->
+                    <td><input type="text" id="COST_TBI_{{ $i->idIngrediente }}" value="{{ $i->custo }}" readonly="readonly"></td><!--Custo (B)-->
+                    <td><input type="text" id="COSTG_TBI_{{ $i->idIngrediente }}" readonly="readonly"></td><!--Aqui exibe o resultado (X) da Quantidade(A) dividida pelo Custo (B)-->
+                    <td><input type="text" id="NQTD_TBI_{{ $i->idIngrediente }}" value="0"></td><!--Aqui insere uma nova Quantidade (Y)-->
+                    <td class="C1V" id="RESULTADO_TBI_{{ $i->idIngrediente }}">2</td><!--Aqui exibe o valor (Z) da multiplicação entre Quantidade (Y) pelo custo (X) -->
                     <td>
-                       <span>{{ $c->custo }}</span>
+                        <a href="/precificador/{{$i->idIngrediente}}">deletar<img src="img/icon/excluir.png" class="icon_acoes"></a><!-- Exclui o ingrediente do banco de dados -->
+                        <a><img src="img/icon/editar.png" class="icon_acoes"></a><!-- Edita o ingrediente do banco de dados -->
                     </td>
-                    <td><input type="number" class="nova-quantidade" value="0"></td>
-                    <td><span class="novo-custo">0.00</span></td>
                 </tr>
                 @endforeach
             </table>
-            
         </div>
+        <div class="container_B">
 
-        <div class="container_B"><!-- CRIAÇÃO E INSERÇÃO DO PRODUTO FINAL -->
-
-            <table class="tb_criacao_produto"><!-- CRIAÇÃO -->
+            <table class="tb_precificador_produto">
                 <tr>
-                    <th colspan="6">TABELA DE CRIAÇÃO DO PRODUTO</th>
+                    <th colspan="2">Calculo do Produto</th>
                 </tr>
                 <tr>
-                    <th>Ingrediente</th>
-                    <th>Quantidade(g)</th>
-                    <th>Custo</th>
-                    <th>Quantidade Necessária(g)</th>
-                    <th>Custo usado</th>
-                    <th>+/-</th>
-                </tr>
-                <tr>
+                    <td>Total Custo de Ingredientes</td>
                     <td>
-                        <select>
-                            <option>-----</option>
-                            @foreach ($ingredientes as $c)
-                            <option value="{{ $c->ingrediente }}">{{ $c->ingrediente }}</option>
-                            @endforeach
-                        </select>
+                        <input type="text" name="" id="C2V1" readonly="readonly">
                     </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                </tr>
+                <tr>
+                    <td>Adiciona 25% (custos incalculáveis, gás, luz, etc)</td>
                     <td>
-                        <button class="botao-adicionar">Adicionar</button>
+                        <input type="text" name="" id="C2V2" readonly="readonly">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Multiplica por 3 (seu lucro e mão de obra)</td>
+                    <td>
+                        <input type="text" name="" id="C2V3" readonly="readonly">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Rendimento / quantas unidades(F)</td>
+                    <td>
+                        <input type="text" name="" id="C2V4" value="0">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Preço por Unidade</td>
+                    <td>
+                        <input type="text" name="" id="C2V5" readonly="readonly">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Preço por Embalagem Individual (G)</td>
+                    <td>
+                        <input type="text" name="" id="C2V6">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Preço final de venda por unidade</td>
+                    <td>
+                        <input type="text" name="" id="C2V7" readonly="readonly">
                     </td>
                 </tr>
             </table>
 
+        </div>
 
-            <table class="tb_precificador_produto"> <!-- CALCULO DO PRODUTO -->
+        <div class="container_C">
+            <table>
                 <tr>
-                    <th colspan="2">Precificador</th>
+                    <th>ID</th>
+                    <th>Produto</th>
+                    <th>Descrição</th>
+                    <th>Valor Custo</th>
+                    <th>Valor Venda</th>
+                    <th>Foto</th>
                 </tr>
                 <tr>
-                    <th>
-                        <label for="soma-custos">Total Custo de Ingredientes</label>
-                    </th>
-                    <td>R$<span id="soma-custos">0.00</span></td>
-                </tr>
-                <tr>
-                    <th>
-                        <label for="addcustinc">Adiciona 25% (custos incalculáveis, gás, luz, etc)</label>
-                    </th>
-                    <td>R$<span id="addcustinc">0.00</span></td>
-                </tr>
-                <tr>
-                    <th>
-                        <label for="M3LMO">Multiplica por 3 (seu lucro e mão de obra)</label>
-                    </th>
-                    <td>R$<span id="M3LMO">0.00</span></td>
-                </tr>
-                <tr>
-                    <th >
-                        <label for="R-C-U_F">Rendimento / quantas unidades (F)</label>
-                    </th>
-                    <td>
-                        <input type="number" id="R-C-U_F">
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        <label for="P_Unit">Preço por Unidade</label>
-                    </th>
-                    <td>R$<span id="P_Unit">0.00</span></td>
-                </tr>
-                <tr>
-                    <th>
-                        <label for="P-E-I_G">Preço por Embalagem Individual (G)</label>
-                    </th>
-                    <td>
-                        <input type="number" id="P-E-I_G">
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        <label for="valor_vtotal">Preço final de venda por unidade</label>
-                    </th>
-                    <td>R$<span id="valor_vtotal">0.00</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
             </table>
-            <!--  ABAIXO FORMULÁRIO PARA INSERIR O PRODUTO NO BANCO  -->
-            <form method="POST" action="" class="formP">
-                <h1>Cadastrar Produto</h1>
-                    <div class="box_img_produto">
-                        <input type="file">
-                    </div>
-                    <div class="box_detalhe_produto">
-                        <input type="text" name="txProduto" placeholder="Nome do Produto" require><br/>
-                        <textarea></textarea><br/>
-                        <input type="number" name="txValor" placeholder="Valor de venda" require><br/>
-                    </div>
-            </form>
         </div>
+
+
+
+
     </div>
-    <footer></footer>
-</body>
 
+    <footer></footer>    
+</body>
 </html>

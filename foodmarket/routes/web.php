@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,8 +24,13 @@ Route::get('vender', function () {
 Route::get('precificador', function () {
     return view('precificador');
 });
-Route::get('precificador', 'IngredientesController@index'); //Rota de consulta
-Route::get('vender', 'ProdutoController@index'); //Rota de consulta
-Route::post('ingrediente', 'IngredientesController@store'); //Rota de inserção
-Route::post('Produto', 'ProdutoController@store'); //Rota de inserção
+
+
+Route::get('precificador', 'IngredientesController@index');
+Route::get('vender', 'ProdutoController@index');
+Route::post('ingrediente', 'IngredientesController@store');
+Route::post('Produto', 'ProdutoController@store');
+
+Route::delete('/precificador/{id}', 'IngredientesController@destroy');
+
 
