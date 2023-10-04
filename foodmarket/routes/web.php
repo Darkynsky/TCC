@@ -31,6 +31,6 @@ Route::get('vender', 'ProdutoController@index');
 Route::post('ingrediente', 'IngredientesController@store');
 Route::post('Produto', 'ProdutoController@store');
 
-Route::delete('/precificador/{id}', 'IngredientesController@destroy');
+Route::get('/precificador/excluir/{id}', 'IngredientesController@destroy');
 
 

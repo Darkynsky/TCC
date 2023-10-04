@@ -40,13 +40,13 @@
                 @foreach ($ingredientes as $i)
                 <tr>
                     <td><p>{{ $i->ingrediente }}<p></td>
-                    <td><input type="text" id="QTD_TBI_{{ $i->idIngrediente }}" value="{{ $i->quantidade }}" readonly="readonly"></td><!--Quantidade (A)-->
-                    <td><input type="text" id="COST_TBI_{{ $i->idIngrediente }}" value="{{ $i->custo }}" readonly="readonly"></td><!--Custo (B)-->
-                    <td><input type="text" id="COSTG_TBI_{{ $i->idIngrediente }}" readonly="readonly"></td><!--Aqui exibe o resultado (X) da Quantidade(A) dividida pelo Custo (B)-->
-                    <td><input type="text" id="NQTD_TBI_{{ $i->idIngrediente }}" value="0"></td><!--Aqui insere uma nova Quantidade (Y)-->
-                    <td class="C1V" id="RESULTADO_TBI_{{ $i->idIngrediente }}">2</td><!--Aqui exibe o valor (Z) da multiplicação entre Quantidade (Y) pelo custo (X) -->
+                    <td><input type="text" id="QTD_TBI" value="{{ $i->quantidade }}" readonly="readonly"></td><!--Quantidade (A)-->
+                    <td><input type="text" id="COST_TBI" value="{{ $i->custo }}" readonly="readonly"></td><!--Custo (B)-->
+                    <td><input type="text" id="COSTG_TBI" readonly="readonly"></td><!--Aqui exibe o resultado (X) da Quantidade(A) dividida pelo Custo (B)-->
+                    <td><input type="text" id="NQTD_TBI" value="0"></td><!--Aqui insere uma nova Quantidade (Y)-->
+                    <td class="C1V" id="RESULTADO_TBI">2</td><!--Aqui exibe o valor (Z) da multiplicação entre Quantidade (Y) pelo custo (X) -->
                     <td>
-                        <a href="/precificador/{{$i->idIngrediente}}">deletar<img src="img/icon/excluir.png" class="icon_acoes"></a><!-- Exclui o ingrediente do banco de dados -->
+                        <a href="/precificador/excluir/{{ $i->idIngredientes }}">deletar<img src="img/icon/excluir.png" class="icon_acoes"></a><!-- Exclui o ingrediente do banco de dados -->
                         <a><img src="img/icon/editar.png" class="icon_acoes"></a><!-- Edita o ingrediente do banco de dados -->
                     </td>
                 </tr>
@@ -95,13 +95,53 @@
                         <input type="text" name="" id="C2V6">
                     </td>
                 </tr>
-                <tr>
-                    <td>Preço final de venda por unidade</td>
-                    <td>
-                        <input type="text" name="" id="C2V7" readonly="readonly">
-                    </td>
-                </tr>
             </table>
+
+            <form action="" method="POST" enctype="multipart/form-data">
+                <table class="tb_salvar_produto">
+                    <tr>
+                        <th colspan="2">Salvar Novo Produto</th>
+                    </tr>
+                    <tr>
+                        <td>Nome do produto</td>
+                        <td>
+                            <input type="text" name="" id="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Valor Sugerido</td>
+                        <td>
+                            <input type="text" name="" id="C2V7" readonly="readonly">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Valor de Venda</td>
+                        <td>
+                            <input type="text" name="" id="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Descrição</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <textarea name="" id=""></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="file-upload" class="custom-file-upload">
+                                Selecione um arquivo
+                            </label>
+                            <input id="file-upload" type="file" />
+                        </td>
+                        <td>
+                            <input type="reset" value="Limpar">
+                            <input type="submit" value="Salvar">
+                        </td>
+                    </tr>
+                </table>
+            </form>
 
         </div>
 
@@ -125,6 +165,8 @@
                 </tr>
             </table>
         </div>
+
+
 
 
 

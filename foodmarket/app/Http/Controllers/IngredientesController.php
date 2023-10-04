@@ -95,8 +95,8 @@ class IngredientesController extends Controller
     public function destroy($id)
     {
         //
-        $ingredientes = Ingredientes::where('idIngrediente',$id)->delete();
-        return redirect()->action('precificador');
+        Ingredientes::where('idIngredientes',$id)->delete();
+        return redirect('precificador');
     }
 
 }
