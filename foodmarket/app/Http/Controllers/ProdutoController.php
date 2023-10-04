@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Produto;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+
+
 
 class ProdutoController extends Controller
 {
@@ -41,7 +45,14 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $produto = new Produto();
+        $produto->produto = $request->input('txNomeProduto');
+        $produto->descricao = $request->input('txDescrProduto');
+        $produto->valor_unitario = $request->input('txValorSProduto');
+        $produto->valor_venda = $request->input('txValorVProduto');
+        $produto->save();
+        return redirect('/precificador');
     }
 
     /**
