@@ -22,33 +22,51 @@
 
     <div class="content">
 
-        <div class="container_A">
+        <div class="container_A">           
 
             <table class="lista_ingredientes">
                 <tr>
                     <th colspan="7">Tabela de Ingredientes</th>
                 </tr>
+                <form method="POST" action="/ingrediente" class="formI">
+                        {{ csrf_field() }}
+                    <tr>
+                        <td>
+                            <input type="text" name="txIngrediente" placeholder="Ingrediente">
+                        </td>
+                        <td>
+                            <input type="text" name="txQuantidade" placeholder="Qtd(g)">
+                        </td>
+                        <td>
+                            <input type="text" name="txCusto" placeholder="Custo" step="0.01" min="0">
+                        </td>
+                        <td>
+                            <input type="submit" value="Salvar">
+                        </td>
+                    </tr>
+                </form>                
                 <tr>
                     <th>ingrediente</th>
                     <th>Quantidade (g)</th>
-                    <th>Custo (R$)</th>
+                    <th>Custo (R$)</th>                    
+                    <th>Ações</th>
                     <th>Custo por grama</th>
                     <th>Quantidade(g) utilizada</th>
                     <th>Custo Final (R$)</th>
-                    <th>Ações</th>
                 </tr>
                 @foreach ($ingredientes as $i)
                 <tr>
                     <td><p>{{ $i->ingrediente }}<p></td>
-                    <td><input type="text" id="QTD_TBI" value="{{ $i->quantidade }}" readonly="readonly"></td><!--Quantidade (A)-->
-                    <td><input type="text" id="COST_TBI" value="{{ $i->custo }}" readonly="readonly"></td><!--Custo (B)-->
-                    <td><input type="text" id="COSTG_TBI" readonly="readonly"></td><!--Aqui exibe o resultado (X) da Quantidade(A) dividida pelo Custo (B)-->
-                    <td><input type="text" id="NQTD_TBI" value="0"></td><!--Aqui insere uma nova Quantidade (Y)-->
-                    <td class="C1V" id="RESULTADO_TBI">0</td><!--Aqui exibe o valor (Z) da multiplicação entre Quantidade (Y) pelo custo (X) -->
+                    <td><input type="text" class="QTD_TBI" value="{{ $i->quantidade }}" ></td><!--Quantidade (A)-->
+                    <td><input type="text" class="COST_TBI" value="{{ $i->custo }}" ></td><!--Custo (B)-->
                     <td>
-                        <a href="/precificador/excluir/{{ $i->idIngredientes }}">deletar<img src="img/icon/excluir.png" class="icon_acoes"></a><!-- Exclui o ingrediente do banco de dados -->
-                        <a><img src="img/icon/editar.png" class="icon_acoes"></a><!-- Edita o ingrediente do banco de dados -->
+                        <a href="/precificador/excluir/{{ $i->idIngredientes }}"><img src="img/icon/excluir.png" class="icon_acoes"></a><!-- Exclui o ingrediente do banco de dados -->
+                        <a><img src="img/icon/salvar.png" class="icon_acoes"></a><!-- Edita o ingrediente do banco de dados -->
                     </td>
+                    <td><input type="text" class="COSTG_TBI" readonly="readonly"></td><!--Aqui exibe o resultado (X) da Quantidade(A) dividida pelo Custo (B)-->
+                    <td><input type="text" class="NQTD_TBI" value="0"></td><!--Aqui insere uma nova Quantidade (Y)-->
+                    <td class="C1V RESULTADO_TBI">0</td><!--Aqui exibe o valor (Z) da multiplicação entre Quantidade (Y) pelo custo (X) -->
+                    
                 </tr>
                 @endforeach
             </table>
@@ -122,6 +140,16 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>Categoria</td>
+                        <td>
+                            <select name="txCategoria">
+                                <option value="Brigadeiro">Brigadeiro</option>
+                                <option value="Bolo-de-pote">Bolo de pote</option>
+                                <option value="Brownie">Brownie</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
                         <td colspan="2">Descrição</td>
                     </tr>
                     <tr>
@@ -135,7 +163,7 @@
                             <label for="file-upload" class="custom-file-upload">
                                 Selecione um arquivo
                             </label>
-                            <input id="file-upload" type="file" name="txFotoProduto"/>
+                            <input id="file-upload" type="file" name="image"/>
                         </td>
                         <td>
                             <input type="reset" value="Limpar"><!-- Limpa o formulário -->
@@ -144,34 +172,9 @@
                     </tr>
                 </table>
             </form>
+            <a href="lista-produtos"><button>Ver todos os produtos</button></a>
 
         </div>
-
-        <div class="container_C">
-            <table>
-                <tr>
-                    <th>ID</th>
-                    <th>Produto</th>
-                    <th>Descrição</th>
-                    <th>Valor Custo</th>
-                    <th>Valor Venda</th>
-                    <th>Foto</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-        </div>
-
-
-
-
-
 
     </div>
 

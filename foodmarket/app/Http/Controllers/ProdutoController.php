@@ -21,6 +21,11 @@ class ProdutoController extends Controller
         $produto = Produto::all();
         return view('vender', compact('produto'));
     }
+    public function indexLista()
+    {
+        $produto = Produto::all();
+        return view('lista-produtos', compact('produto'));
+    }
     public function indexjson()
     {        
         $produto = Produto::all();
@@ -44,16 +49,24 @@ class ProdutoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        
-        $produto = new Produto();
-        $produto->produto = $request->input('txNomeProduto');
-        $produto->descricao = $request->input('txDescrProduto');
-        $produto->valor_unitario = $request->input('txValorSProduto');
-        $produto->valor_venda = $request->input('txValorVProduto');
-        $produto->save();
-        return redirect('/precificador');
+{
+    $produto = new Produto();
+    $produto->produto = $request->input('txNomeProduto');
+    $produto->descricao = $request->input('txDescrProduto');
+    $produto->categoria = $request->input('txCategoria');
+    $produto->valor_unitario = $request->input('txValorSProduto');
+    $produto->valor_venda = $request->input('txValorVProduto');
+
+    if ($request->hasFile('image') && $request->file('image')->isValid()) {
+        $extension = $request->image->extension();
+        $imageName = md5($request->image->getClientOriginalName() . strtotime("now")) . "." . $extension;
+        $request->image->move(public_path('img/produtos'), $imageName);
+        $produto->foto = $imageName;
     }
+
+    $produto->save();
+    return redirect('/precificador');
+}
 
     /**
      * Display the specified resource.
@@ -63,7 +76,8 @@ class ProdutoController extends Controller
      */
     public function show($id)
     {
-        //
+        $produto = Produto::find($id);
+        return view('produto-editar', compact('produto'));
     }
 
     /**

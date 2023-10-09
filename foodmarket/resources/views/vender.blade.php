@@ -23,11 +23,11 @@
             @foreach($produto as $p)
             <div class="box_exibidor_produto">
                 <div class="produto_part1exibe">
-                    <img class="img_produto" src="{{ $p->foto }}">
+                    <img class="img_produto" src="img/produtos/{{ $p->foto }}">
                 </div>
 
                 <div class="produto_part2exibe">
-                    <p class="title_produto">{{ $p->produto }}</p>
+                    <p class="title_produto">{{ $p->produto }}</p><br/>
                     <p class="descricao_produto">{{ $p->descricao }}</p>
                 </div>
 

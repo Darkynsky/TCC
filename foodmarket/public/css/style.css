@@ -1,6 +1,6 @@
 /* ESTILOS PADRÕES */
 :root{
-    --cor-1:#faf38b;
+    --cor-1:rgba(250, 243, 139, .5);
     --cor-2:#143700;
     --cor-3:linear-gradient(#da3b58,#c0344d);
     --cor-4:linear-gradient(#4b2d0d,#251611);
@@ -15,7 +15,7 @@
 }
 body{
     text-align: center;
-    background: var(--cor-5);
+    background: var(--cor-1);
 }
 header{
     text-align: center;
@@ -89,9 +89,8 @@ footer{
     align-items: center;
 }
 /* PARTE DOS INGREDIENTES */
-.formI{
-    margin-bottom:.5%;
-}
+
+
 .lista_ingredientes {
     background: var(--cor-3);
     border: 2px solid var(--cor-4);
@@ -121,7 +120,7 @@ footer{
     outline: none;
     border-radius: 5px;
     border: none;
-    width: 3vmax;
+    width: 8vmax;
     background: transparent;
     color: var(--cor-2);
     text-align: center;
@@ -152,6 +151,7 @@ footer{
     width: 10vmax;
     background: transparent;
     color: var(--cor-2);
+    text-align: center;
 }
 /* CRIAÇÃO PRODUTO */
 .tb_criacao_produto{
@@ -208,6 +208,7 @@ select{
     width: 10vmax;
     background: transparent;
     color: var(--cor-2);
+    text-align: center;
 }
 .tb_salvar_produto textarea{
     outline: none;
@@ -237,7 +238,7 @@ select{
 input[type="file"] {
     display: none;
 }
-.tb_salvar_produto input[type=reset], input[type=submit]{    
+.tb_salvar_produto input[type=reset]{    
     background: var(--cor-5);
     color: var(--cor-6);
     border: solid 1px var(--cor-6);
@@ -246,7 +247,22 @@ input[type="file"] {
     height: 100%;
     cursor: pointer;
 }
-.tb_salvar_produto input[type=reset]:hover, input[type=submit]:hover{    
+.tb_salvar_produto input[type=reset]:hover{    
+    background: var(--cor-3);
+    color: var(--cor-5);
+    border: solid 1px var(--cor-5);
+}
+
+.tb_salvar_produto input[type=submit]{    
+    background: var(--cor-5);
+    color: var(--cor-6);
+    border: solid 1px var(--cor-6);
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+.tb_salvar_produto input[type=submit]:hover{    
     background: var(--cor-3);
     color: var(--cor-5);
     border: solid 1px var(--cor-5);
@@ -257,7 +273,7 @@ input[type="file"] {
 /* TELA DE VENDA */
 .vitrine{
     margin-left: 2%;
-    display: flex;
+    display: flex;    
     flex-wrap: wrap;
     text-align: center;
     justify-content: flex-start;
@@ -270,20 +286,24 @@ input[type="file"] {
     justify-content: center;
     width: 20vh;
     border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    justify-content: space-between;
 }
 .produto_part1exibe{
     width: 100%;
 }
 .produto_part2exibe{
     width: 100%;
-    height: 5vmax;
+    min-height: 7vmax;
     text-align: left;
     text-wrap: wrap;
 }
 .produto_part3exibe{
     width: 100%;
     height: auto;
-    text-align: justify;
+    text-align: left;
     text-wrap: wrap;
 }
 .produto_part3exibe button{
@@ -315,4 +335,24 @@ input[type="file"] {
     border-radius: 15px;
     width: 20vh;
     height: 20vh;
+}
+
+/* PAGINA LISTA-PRODUTOS */
+.table_lista{
+    margin-top: 1%;
+    background: var(--cor-3);
+    border: 2px solid var(--cor-4);
+    border-radius: 5px;
+}
+.table_lista th{
+    background: var(--cor-4);
+    color: var(--cor-5);
+    border-radius: 5px;
+    text-wrap: wrap;
+}
+.table_lista td{
+    margin: 0;
+    background: var(--cor-5);
+    color: var(--cor-2);
+    border-radius: 5px;
 }

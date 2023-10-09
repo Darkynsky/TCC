@@ -1,8 +1,46 @@
 /* PARTE 1 */
+document.addEventListener("DOMContentLoaded", function () {
+    const quantidadeInputs = document.querySelectorAll(".QTD_TBI");
+    const custoInputs = document.querySelectorAll(".COST_TBI");
+    const resultadoInputs = document.querySelectorAll(".COSTG_TBI");
+    const novaQuantidadeInputs = document.querySelectorAll(".NQTD_TBI");
+    const resultadoTds = document.querySelectorAll(".RESULTADO_TBI");
 
-  
+    // Adicionar ouvintes de eventos de entrada aos campos relevantes
+    quantidadeInputs.forEach(function (quantidadeInput, index) {
+        quantidadeInput.addEventListener("input", function () {
+            calcularResultado(index);
+        });
+    });
 
+    custoInputs.forEach(function (custoInput, index) {
+        custoInput.addEventListener("input", function () {
+            calcularResultado(index);
+        });
+    });
 
+    novaQuantidadeInputs.forEach(function (novaQuantidadeInput, index) {
+        novaQuantidadeInput.addEventListener("input", function () {
+            calcularResultado(index);
+        });
+    });
+
+    // Função para calcular o resultado
+    function calcularResultado(index) {
+        const quantidade = parseFloat(quantidadeInputs[index].value) || 0;
+        const custo = parseFloat(custoInputs[index].value) || 0;
+        const novaQuantidade = parseFloat(novaQuantidadeInputs[index].value) || 0;
+
+        const resultadoX = quantidade !== 0 ? (custo / quantidade).toFixed(10) : 0;
+        const resultadoZ = (novaQuantidade * resultadoX).toFixed(2);
+
+        resultadoInputs[index].value = resultadoX;
+        resultadoTds[index].textContent = resultadoZ;
+    }
+
+    // Calcular o resultado inicial
+    calcularResultado();
+});
 /* PARTE 2 */
 document.addEventListener("DOMContentLoaded", function () {
     // Função para calcular a soma das C1V

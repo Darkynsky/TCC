@@ -86,6 +86,7 @@ class IngredientesController extends Controller
         //
     }
 
+
     /**
      * Remove the specified resource from storage.
      *
