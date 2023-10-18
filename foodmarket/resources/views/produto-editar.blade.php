@@ -20,7 +20,7 @@
     </nav>
 
     <div class="content">
-        <form method="POST" action="/atualizar-produto">
+        <form method="POST" action="">
             {{ csrf_field() }}
             <input type="hidden" name="produto_id" value="{{ $produto->idProduto }}">
     

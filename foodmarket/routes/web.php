@@ -27,6 +27,9 @@ Route::get('precificador', function () {
 Route::get('lista-produtos', function () {
     return view('lista-produtos');
 });
+Route::get('gerenciarClientes', function () {
+    return view('gerenciarClientes');
+});
 
 
 
@@ -37,6 +40,7 @@ Route::get('lista-produtos', 'ProdutoController@indexLista');
 
 Route::post('ingrediente', 'IngredientesController@store');
 Route::post('Produto', 'ProdutoController@store');
+Route::post('Cliente', 'ClienteController@store');
 
 
 Route::get('/precificador/excluir/{id}', 'IngredientesController@destroy');
@@ -46,6 +50,5 @@ Route::get('/lista-produtos/excluir/{id}', 'ProdutoController@destroy');
 Route::get('/produto-editar/editar/{id}', 'ProdutoController@show');
 
 
-Route::get('/lista-produtos/excluir/{id}', 'ProdutoController@update');
 
 

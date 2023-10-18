@@ -16,6 +16,7 @@
         <a href="/"><button>Home</button></a>
         <a href="precificador"><button>Precificar</button></a>
         <a href="vender"><button>Vender</button></a>
+        <a href="gerenciarClientes"><button>Clientes</button></a>
         <a href=""><button>Visualizar Vendas</button></a>
     </nav>
     <div class="content">
@@ -37,6 +38,10 @@
                 </div>
             </div>
             @endforeach
+        </div>
+
+        <div class="carrinho">
+            <table></table>
         </div>
     </div>
 
