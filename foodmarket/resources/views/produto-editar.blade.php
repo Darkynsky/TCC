@@ -20,8 +20,11 @@
     </nav>
 
     <div class="content">
-        <form method="POST" action="">
+        <form method="POST" action="{{ route('produto.update', ['id' => $produto->idProduto]) }}" enctype="multipart/form-data">
+
             {{ csrf_field() }}
+            <input type="hidden" name="_method" value="PUT">
+
             <input type="hidden" name="produto_id" value="{{ $produto->idProduto }}">
     
             <label for="produto">Produto:</label>

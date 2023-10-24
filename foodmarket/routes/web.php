@@ -35,7 +35,8 @@ Route::get('gerenciarClientes', function () {
 
 Route::get('precificador', 'IngredientesController@index');
 Route::get('vender', 'ProdutoController@index');
-Route::get('lista-produtos', 'ProdutoController@indexLista');
+Route::get('lista-produtos', 'ProdutoController@indexLista')->name('lista-produtos');
+
 
 
 Route::post('ingrediente', 'IngredientesController@store');
@@ -48,6 +49,9 @@ Route::get('/lista-produtos/excluir/{id}', 'ProdutoController@destroy');
 
 
 Route::get('/produto-editar/editar/{id}', 'ProdutoController@show');
+Route::put('Produto/{id}', 'ProdutoController@update')->name('produto.update');
+
+
 
 
 

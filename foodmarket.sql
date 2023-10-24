@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 22-Set-2023 às 18:31
+-- Tempo de geração: 24-Out-2023 às 19:48
 -- Versão do servidor: 5.7.36
 -- versão do PHP: 7.4.26
 
@@ -20,22 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `foodmarket`
 --
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `tbcarrinho`
---
-
-DROP TABLE IF EXISTS `tbcarrinho`;
-CREATE TABLE IF NOT EXISTS `tbcarrinho` (
-  `idCarrinho` int(11) NOT NULL AUTO_INCREMENT,
-  `idProduto` int(11) DEFAULT NULL,
-  `qtd` int(11) DEFAULT NULL,
-  `valorTotalP` double DEFAULT NULL,
-  PRIMARY KEY (`idCarrinho`),
-  KEY `idProduto` (`idProduto`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -77,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `tbingredientes` (
   `quantidade` int(11) DEFAULT NULL,
   `custo` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`idIngredientes`)
-) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `tbingredientes`
@@ -119,7 +103,8 @@ INSERT INTO `tbingredientes` (`idIngredientes`, `ingrediente`, `quantidade`, `cu
 (33, 'brigadeiro de caramelo salgado', 519, '42.00'),
 (34, 'sneacker', 50, '4.00'),
 (35, 'granulado de chocolate', 400, '34.00'),
-(36, 'glucose', 1000, '12.00');
+(37, 'glucose', 1000, '12.00'),
+(38, 'Pistache', 1000, '220.00');
 
 -- --------------------------------------------------------
 
@@ -132,37 +117,20 @@ CREATE TABLE IF NOT EXISTS `tbproduto` (
   `idProduto` int(11) NOT NULL AUTO_INCREMENT,
   `produto` varchar(100) DEFAULT NULL,
   `descricao` varchar(1000) DEFAULT NULL,
-  `valor_unitario` double DEFAULT NULL,
-  `valor_venda` double DEFAULT NULL,
+  `valor_unitario` decimal(10,2) DEFAULT NULL,
+  `valor_venda` decimal(10,2) DEFAULT NULL,
   `foto` varchar(1000) DEFAULT NULL,
+  `categoria` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`idProduto`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `tbproduto`
 --
 
-INSERT INTO `tbproduto` (`idProduto`, `produto`, `descricao`, `valor_unitario`, `valor_venda`, `foto`) VALUES
-(1, 'Brigadeiro de Chocolate', 'Brigadeiro saboroso de chocolate ao leite.', 1.99, 3.99, NULL),
-(2, 'Brigadeiro de Morango', 'Brigadeiro com sabor de morango fresco.', 2.49, 4.99, NULL),
-(3, 'Brigadeiro de Coco', 'Brigadeiro com coco ralado para um toque tropical.', 2.99, 5.99, NULL),
-(4, 'Brigadeiro de Amendoim', 'Brigadeiro com pedaços de amendoim crocante.', 2.29, 4.49, NULL),
-(5, 'Brigadeiro de Leite Condensado', 'Brigadeiro clássico com leite condensado.', 1.79, 3.49, NULL),
-(6, 'Brigadeiro de Maracujá', 'Brigadeiro com sabor refrescante de maracujá.', 2.69, 5.49, NULL),
-(7, 'Brigadeiro de Limão', 'Brigadeiro com toque cítrico de limão.', 2.49, 4.99, NULL),
-(8, 'Brigadeiro de Nozes', 'Brigadeiro com pedaços de nozes crocantes.', 3.49, 6.99, NULL),
-(9, 'Brigadeiro de Pistache', 'Brigadeiro com sabor delicado de pistache.', 3.19, 6.49, NULL),
-(10, 'Brigadeiro de Café', 'Brigadeiro com sabor intenso de café.', 2.79, 5.49, NULL),
-(11, 'Brigadeiro de Abacaxi', 'Brigadeiro com sabor tropical de abacaxi.', 2.69, 5.49, NULL),
-(12, 'Brigadeiro de Baunilha', 'Brigadeiro com aroma suave de baunilha.', 2.29, 4.49, NULL),
-(13, 'Brigadeiro de Cereja', 'Brigadeiro com pedaços de cereja fresca.', 2.99, 5.99, NULL),
-(14, 'Brigadeiro de Limão Siciliano', 'Brigadeiro com o sabor cítrico do limão siciliano.', 2.49, 4.99, NULL),
-(15, 'Brigadeiro de Manga', 'Brigadeiro com sabor refrescante de manga.', 2.79, 5.49, NULL),
-(16, 'Brigadeiro de Frutas Vermelhas', 'Brigadeiro com mistura de frutas vermelhas.', 3.29, 6.49, NULL),
-(17, 'Brigadeiro de Pistache com Chocolate Branco', 'Brigadeiro com pistache e chocolate branco.', 3.49, 6.99, NULL),
-(18, 'Brigadeiro de Doce de Leite', 'Brigadeiro com sabor doce de leite.', 1.99, 3.99, NULL),
-(19, 'Brigadeiro de Avelã', 'Brigadeiro com o sabor único da avelã.', 3.19, 6.49, NULL),
-(20, 'Brigadeiro de Maracujá com Chocolate Branco', 'Brigadeiro com maracujá e chocolate branco.', 3.29, 6.49, NULL);
+INSERT INTO `tbproduto` (`idProduto`, `produto`, `descricao`, `valor_unitario`, `valor_venda`, `foto`, `categoria`) VALUES
+(1, 'Brigadeiro de Capim Santo', 'Brigadeiro feito com capim santo e enrolado em amêndoa laminada', '2.82', '3.00', '5a0f6dd5252b900d2110170730e22e2e.png', NULL),
+(2, 'Brigadeiro casadinho', 'Misturado', '2.30', '3.00', '0a4e714f9427936152bec7b7aa92aebc.png', NULL);
 
 -- --------------------------------------------------------
 
@@ -191,18 +159,14 @@ DROP TABLE IF EXISTS `tbvenda`;
 CREATE TABLE IF NOT EXISTS `tbvenda` (
   `idVenda` int(11) NOT NULL AUTO_INCREMENT,
   `idCliente` int(11) DEFAULT NULL,
-  `idCarrinho` int(11) DEFAULT NULL,
-  `valorTotal` double DEFAULT NULL,
-  `ValorPago` double DEFAULT NULL,
-  `ValorPendente` double DEFAULT NULL,
-  `dataVenda` date DEFAULT NULL,
-  `dataEntrega` date DEFAULT NULL,
-  `idFormaPagamento` int(11) DEFAULT NULL,
-  `statusPagamento` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`idVenda`),
-  KEY `idCliente` (`idCliente`),
-  KEY `idCarrinho` (`idCarrinho`),
-  KEY `idFormaPagamento` (`idFormaPagamento`)
+  `idProduto` int(11) DEFAULT NULL,
+  `qtdProduto` int(11) DEFAULT NULL,
+  `valorTotalProduto` decimal(10,2) DEFAULT NULL,
+  `tpVenda` varchar(100) DEFAULT NULL,
+  `dtVenda` date DEFAULT NULL,
+  `dtEntrega` date DEFAULT NULL,
+  `status` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`idVenda`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 COMMIT;
 
