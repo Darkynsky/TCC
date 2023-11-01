@@ -58,7 +58,7 @@ nav button:hover{
     box-shadow: 0 0 30px var(--cor-5);
     text-shadow: 0 0 30px var(--cor-5);
 }
-footer{
+/*footer{
     border-top: 1px solid var(--cor-6);
     clear: both;
     width: 100%;
@@ -68,7 +68,7 @@ footer{
     background: var(--cor-4);
     bottom: 0;
     position: relative;
-}
+}*/
 
 .content{
     justify-content: center;

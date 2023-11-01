@@ -30,6 +30,9 @@ Route::get('lista-produtos', function () {
 Route::get('gerenciarClientes', function () {
     return view('gerenciarClientes');
 });
+Route::get('dashboard', function () {
+    return view('dashboard');
+});
 
 
 

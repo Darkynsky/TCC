@@ -5,7 +5,7 @@ Na pasta do projeto: copiar o .env.example e renomear a copia para .env e fazer 
 
 APP_URL=http://"DIGITAR_O_IPv4_MOSTRADO_NO_PROMPT_DE_COMANDO"
 
-DB_DATABASE=padariacamargo
+DB_DATABASE=pattibrigaderia
 DB_USERNAME=root
 DB_PASSWORD=
 
