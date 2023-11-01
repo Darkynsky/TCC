@@ -14,6 +14,8 @@ class ClienteController extends Controller
      */
     public function index()
     {
+        $clientes = Cliente::all();
+        return view('/gerenciarClientes', compact('clientes'));
 
     }
 
@@ -38,6 +40,10 @@ class ClienteController extends Controller
         $cliente = new Cliente();
         $cliente->cliente = $request->input('txNomeCliente');
         $cliente->celular = $request->input('txCelularCliente');
+        $cliente->casa = $request->input('txNumeroCsCliente');
+        $cliente->cidade = $request->input('txMunicipioCliente');
+        $cliente->logradouro = $request->input('txLogradouroCliente');
+        $cliente->cep = $request->input('txCepCliente');
         $cliente->save();
         return redirect('/gerenciarClientes');
     }

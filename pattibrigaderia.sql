@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 24-Out-2023 às 19:48
+-- Tempo de geração: 01-Nov-2023 às 23:24
 -- Versão do servidor: 5.7.36
 -- versão do PHP: 7.4.26
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `foodmarket`
+-- Banco de dados: `pattibrigaderia`
 --
 
 -- --------------------------------------------------------
@@ -32,6 +32,10 @@ CREATE TABLE IF NOT EXISTS `tbcliente` (
   `idCliente` int(11) NOT NULL AUTO_INCREMENT,
   `cliente` varchar(100) DEFAULT NULL,
   `celular` varchar(20) DEFAULT NULL,
+  `cep` int(11) DEFAULT NULL,
+  `logradouro` varchar(250) DEFAULT NULL,
+  `casa` varchar(10) DEFAULT NULL,
+  `cidade` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`idCliente`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 

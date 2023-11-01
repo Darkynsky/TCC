@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Cliente extends Model
 {    
     protected $table = 'tbcliente';    
-    protected $fillable = ['idCliente','cliente','celular'];
+    protected $fillable = ['idCliente','cliente','celular','cep','logradouro','casa','cidade'];
     public $timestamps = false;
 }
