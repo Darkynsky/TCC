@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Produto;
+use App\Cliente;
+use App\FPagamento;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -19,7 +21,9 @@ class ProdutoController extends Controller
     public function index()
     {        
         $produto = Produto::all();
-        return view('vender', compact('produto'));
+        $cliente = Cliente::all();
+        $fpagamento = FPagamento::all();
+        return view('vender', compact('produto','cliente', 'fpagamento'));
     }
     public function indexLista()
     {

@@ -20,10 +20,63 @@
             </div>
         </div>
     @endforeach
-    </div>
-        
+</div>
     <div class="carrinho">
-        <table></table>
+
+        <form action="">
+            <label for="txVendaCliente">Cliente: </label>
+            <select name="txVendaCliente" id="txVendaCliente">
+                <option value="">----------</option>
+                @foreach($cliente as $cli)
+                <option value="{{$cli->idCliente}}">{{$cli->cliente}}</option>
+                @endforeach
+            </select>
+
+            <label for="txTVenda">Tipo de Venda</label>
+            <select name="txTVenda" id="txTVenda">
+                <option value="Pronta entrega">Pronta entrega</option>
+                <option value="Encomenda">Encomenda</option>
+            </select>
+
+            <label for="txDataPed">Data do Pedido</label>
+            <input type="date" name="txDataPed" id="txDataPed">
+
+            <label for="txDataEnt">Data da Entrega</label>
+            <input type="date" name="txDataEnt" id="txDataEnt">
+
+            
+            <label for="txStatus">Status</label>
+            <select name="txStatus" id="txStatus">
+                <option value="Não Pago">Não Pago</option>
+                <option value="Parcial">Parcial</option>
+                <option value="Pago">Pago</option>
+            </select>       
+                
+            <table>
+                <tr>
+                    <th>Produto</th>
+                    <th>Quantidade</th>
+                    <th>Valor Total</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="number" name="txQtd" id="txQtd"></td>
+                    <td></td>
+                </tr>
+            </table>
+
+            <label for="txFPagamento">Forma de Pagamento</label>
+            <select name="txFPagamento" id="txFPagamento">
+                <option value=""></option>
+                @foreach($fpagamento as $pag)
+                <option value="{{$pag->idFPagamento}}">{{$pag->fPagamento}}</option>
+                @endforeach
+            </select>
+
+            <input type="submit" value="Finalizar">
+            
+        </form>
     </div>
+
         
 @endsection
