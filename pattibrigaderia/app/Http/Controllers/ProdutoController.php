@@ -112,5 +112,7 @@ class ProdutoController extends Controller
     public function destroy($id)
     {
         //
+        Produto::where('idProduto',$id)->delete();
+        return redirect('lista-produtos');
     }
 }

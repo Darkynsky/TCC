@@ -1,58 +1,76 @@
-
 @extends('layouts.layoutdefault')
 @section('content')
 
-<div class="container_B">
-
-    <form action="/Cliente" method="post" id="formCliente" >
+<div class="container_cliente_form">
+    <form action="/Cliente" method="post" id="formCliente">
         {{ csrf_field() }}
         <h1>Cadastro de Clientes</h1>
-        <label for="cadClienteNome">Nome: </label>
-        <input type="text" name="txNomeCliente" id="cadClienteNome"><br>
+        <div class="groupForm">
+             
+            <label for="cadClienteNome">Nome: 
+            <input type="text" name="txNomeCliente" id="cadClienteNome"></label><br>
+                
+            <label for="cadClienteCelular">Celular: 
+            <input type="tel" name="txCelularCliente" id="cadClienteCelular"></label>
+                    
+            <label for="cadClienteEmail">Email: 
+            <input type="text" name="txEmailCliente" id="cadClienteEmail"></label><br>
+                        
+        </div>
+        <div class="groupForm">
+
+            <label for="cadClienteCEP">CEP:  
+            <input type="text" name="txCepCliente" id="cadClienteCEP"></label>
+                
+            <label for="cadClienteMunicipio">Município: 
+            <input type="text" name="txMunicipioCliente" id="cadClienteMunicipio"></label>
+                    
+            <label for="cadClienteBairro">Bairro: 
+            <input type="text" name="txBairroCliente" id="cadClienteBairro"></label><br>
+        </div>
         
-        <label for="cadClienteCelular">Celular: </label>
-        <input type="tel" name="txCelularCliente" id="cadClienteCelular"><br>
         
-        <label for="cadClienteCEP">CEP: </label>
-        <input type="text" name="txCepCliente" id="cadClienteCEP"><br>
+        <div class="groupForm">
+        <label for="cadClienteLogradouro">Logradouro: 
+            <input type="text" name="txLogradouroCliente" id="cadClienteLogradouro"></label>
         
-        <label for="cadClienteLogradouro">Logradouro: </label>
-        <input type="text" name="txLogradouroCliente" id="cadClienteLogradouro"><br>
+            <label for="cadClienteNumero">Nº:
+            <input type="text" name="txNumeroCsCliente" id="cadClienteNumero"></label>
         
-        <label for="cadClienteNumero">Nº:</label>
-        <input type="text" name="txNumeroCsCliente" id="cadClienteNumero"><br>
+            <label for="cadClienteComplemento">Complemento:
+            <input type="text" name="txComplementoCsCliente" id="cadClienteComplemento"></label><br>
+        </div>
         
-        <label for="cadClienteMunicipio">Município: </label>
-        <input type="text" name="txMunicipioCliente" id="cadClienteMunicipio">
         
         
         
         <input type="reset" value="Limpar todos os campos">
         <input type="submit" value="Salvar">
+        
     </form>
-</div>
-<div class="container_A">
+</div><br>
 
 
-    <table class="table_lista">
+<div class="container_A">    
+    <table class="tabela_cliente">
         <tr>
             <th>ID</th>
             <th>Nome</th>
             <th>Celular</th>
+            <th>Email</th>
             <th>Endereço</th>
-            <th>Número</th>
-            <th>Cidade</th>
             <th>CEP</th>
+            <th>Ações</th>
         </tr>
-        @foreach($clientes as $cl)
+        @foreach($cliente as $cli)
         <tr>
-            <td>{{$cl->idCliente}}</td>
-            <td>{{$cl->cliente}}</td>
-            <td>{{$cl->celular}}</td>
-            <td>{{$cl->logradouro}}</td>
-            <td>{{$cl->casa}}</td>
-            <td>{{$cl->cidade}}</td>
-            <td>{{$cl->cep}}</td>
+            <td>{{$cli->idCliente}}</td>
+            <td>{{$cli->cliente}}</td>
+            <td>{{$cli->celular}}</td>
+            <td>{{$cli->email}}</td>
+            <td>{{$cli->logradouro}},{{$cli->numero}} {{$cli->complemento}} - {{$cli->bairro}},{{$cli->municipio}}</td>
+            <td>{{$cli->cep}}</td>
+            <td><a href="/gerenciarClientes/excluir/{{ $cli->idCliente }}"><img src="img/icon/excluir.png" class="icon_acoes"></a></td>
         </tr>
         @endforeach
     </table>

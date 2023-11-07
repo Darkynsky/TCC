@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 01-Nov-2023 às 23:24
+-- Tempo de geração: 07-Nov-2023 às 17:01
 -- Versão do servidor: 5.7.36
 -- versão do PHP: 7.4.26
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `pattibrigaderia`
+-- Banco de dados: `foodmarket`
 --
 
 -- --------------------------------------------------------
@@ -32,12 +32,23 @@ CREATE TABLE IF NOT EXISTS `tbcliente` (
   `idCliente` int(11) NOT NULL AUTO_INCREMENT,
   `cliente` varchar(100) DEFAULT NULL,
   `celular` varchar(20) DEFAULT NULL,
-  `cep` int(11) DEFAULT NULL,
-  `logradouro` varchar(250) DEFAULT NULL,
-  `casa` varchar(10) DEFAULT NULL,
-  `cidade` varchar(100) DEFAULT NULL,
+  `municipio` varchar(200) DEFAULT NULL,
+  `cep` varchar(9) DEFAULT NULL,
+  `logradouro` varchar(200) DEFAULT NULL,
+  `numero` int(11) DEFAULT NULL,
+  `complemento` varchar(100) DEFAULT NULL,
+  `email` varchar(200) DEFAULT NULL,
+  `bairro` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`idCliente`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `tbcliente`
+--
+
+INSERT INTO `tbcliente` (`idCliente`, `cliente`, `celular`, `municipio`, `cep`, `logradouro`, `numero`, `complemento`, `email`, `bairro`) VALUES
+(2, 'teste NOme', '9000000009', 'são paulo', '08150350', 'rua de teste', 3000, 'casa teste 1', 'teste@teste.com', NULL),
+(3, 'Vinicius Telles', '11977825356', 'São Paulo', '08150350', 'Rua Samuel Pedro dos Santos', 114, 'Casa 4', 'telles861@gmail.com', 'Jardim Robru');
 
 -- --------------------------------------------------------
 

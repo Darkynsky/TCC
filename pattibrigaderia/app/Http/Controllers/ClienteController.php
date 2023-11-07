@@ -14,9 +14,8 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        $clientes = Cliente::all();
-        return view('/gerenciarClientes', compact('clientes'));
-
+        $cliente = Cliente::all();
+        return view('gerenciarClientes', compact('cliente'));
     }
 
     /**
@@ -40,10 +39,13 @@ class ClienteController extends Controller
         $cliente = new Cliente();
         $cliente->cliente = $request->input('txNomeCliente');
         $cliente->celular = $request->input('txCelularCliente');
-        $cliente->casa = $request->input('txNumeroCsCliente');
-        $cliente->cidade = $request->input('txMunicipioCliente');
-        $cliente->logradouro = $request->input('txLogradouroCliente');
         $cliente->cep = $request->input('txCepCliente');
+        $cliente->municipio = $request->input('txMunicipioCliente');
+        $cliente->logradouro = $request->input('txLogradouroCliente');
+        $cliente->bairro = $request->input('txBairroCliente');
+        $cliente->complemento = $request->input('txComplementoCsCliente');
+        $cliente->numero = $request->input('txNumeroCsCliente');
+        $cliente->email = $request->input('txEmailCliente');
         $cliente->save();
         return redirect('/gerenciarClientes');
     }
@@ -89,7 +91,8 @@ class ClienteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //
+    {        
+        Cliente::where('idCliente',$id)->delete();
+        return redirect('gerenciarClientes');
     }
 }
