@@ -276,6 +276,8 @@ input[type="file"] {
     display: flex;  
     text-align: center;
     justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
 }
 .box_exibidor_produto{
     background: var(--cor-8);
@@ -292,6 +294,8 @@ input[type="file"] {
 }
 .produto_part1exibe{
     width: 100%;
+    background: var(--cor-5);
+    border-radius: 10px;
 }
 .produto_part2exibe{
     width: 100%;
@@ -335,6 +339,23 @@ input[type="file"] {
     width: 20vh;
     height: 20vh;
 }
+
+
+/*  CARRINHO  */
+.carrinho{
+    justify-content: center;
+    display:flex;
+    flex-wrap: wrap;
+    padding: 2%;
+    border: 2px solid red;
+}
+.carrinho select{
+    width: auto;
+}
+.carrinho_lista{
+    width: 100%;
+}
+
 
 /* PAGINA LISTA-PRODUTOS */
 .table_lista{

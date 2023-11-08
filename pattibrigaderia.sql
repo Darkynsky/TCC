@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 07-Nov-2023 às 17:01
+-- Tempo de geração: 08-Nov-2023 às 19:17
 -- Versão do servidor: 5.7.36
 -- versão do PHP: 7.4.26
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `foodmarket`
+-- Banco de dados: `pattibrigaderia`
 --
 
 -- --------------------------------------------------------
@@ -61,7 +61,17 @@ CREATE TABLE IF NOT EXISTS `tbfpagamento` (
   `idFPagamento` int(11) NOT NULL AUTO_INCREMENT,
   `fPagamento` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`idFPagamento`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `tbfpagamento`
+--
+
+INSERT INTO `tbfpagamento` (`idFPagamento`, `fPagamento`) VALUES
+(1, 'Dinheiro'),
+(2, 'Crédito'),
+(3, 'Débito'),
+(4, 'Pix');
 
 -- --------------------------------------------------------
 
@@ -137,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `tbproduto` (
   `foto` varchar(1000) DEFAULT NULL,
   `categoria` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`idProduto`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `tbproduto`
@@ -145,7 +155,8 @@ CREATE TABLE IF NOT EXISTS `tbproduto` (
 
 INSERT INTO `tbproduto` (`idProduto`, `produto`, `descricao`, `valor_unitario`, `valor_venda`, `foto`, `categoria`) VALUES
 (1, 'Brigadeiro de Capim Santo', 'Brigadeiro feito com capim santo e enrolado em amêndoa laminada', '2.82', '3.00', '5a0f6dd5252b900d2110170730e22e2e.png', NULL),
-(2, 'Brigadeiro casadinho', 'Misturado', '2.30', '3.00', '0a4e714f9427936152bec7b7aa92aebc.png', NULL);
+(2, 'Brigadeiro casadinho', 'Misturado', '2.30', '3.00', '0a4e714f9427936152bec7b7aa92aebc.png', NULL),
+(5, 'teste carrinho 2', NULL, '2.00', '2.50', NULL, 'Brigadeiro');
 
 -- --------------------------------------------------------
 
@@ -180,9 +191,26 @@ CREATE TABLE IF NOT EXISTS `tbvenda` (
   `tpVenda` varchar(100) DEFAULT NULL,
   `dtVenda` date DEFAULT NULL,
   `dtEntrega` date DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
+  `status` varchar(20) DEFAULT NULL,
+  `idFPagamento` int(11) DEFAULT NULL,
   PRIMARY KEY (`idVenda`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `tbvenda`
+--
+
+INSERT INTO `tbvenda` (`idVenda`, `idCliente`, `idProduto`, `qtdProduto`, `valorTotalProduto`, `tpVenda`, `dtVenda`, `dtEntrega`, `status`, `idFPagamento`) VALUES
+(1, 0, NULL, NULL, NULL, 'Pronta entrega', '2023-11-08', '2023-11-08', 'Pago', 4),
+(2, NULL, NULL, 2, '6.00', NULL, NULL, NULL, NULL, NULL),
+(3, NULL, NULL, 1, '3.00', NULL, NULL, NULL, NULL, NULL),
+(4, 2, NULL, NULL, NULL, 'Encomenda', '2023-11-08', '2023-11-29', 'Parcial', NULL),
+(5, NULL, NULL, 3, '9.00', NULL, NULL, NULL, NULL, NULL),
+(6, NULL, NULL, 5, '12.50', NULL, NULL, NULL, NULL, NULL),
+(7, 2, NULL, NULL, NULL, 'Pronta entrega', '2023-11-08', '2023-11-08', 'Pago', NULL),
+(8, NULL, NULL, 5, '12.50', NULL, NULL, NULL, NULL, NULL),
+(9, NULL, NULL, 15, '45.00', NULL, NULL, NULL, NULL, NULL),
+(10, NULL, NULL, 12, '36.00', NULL, NULL, NULL, NULL, NULL);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

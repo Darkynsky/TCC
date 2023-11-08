@@ -39,6 +39,7 @@ Route::get('dashboard', function () {
 Route::get('precificador', 'IngredientesController@index');
 Route::get('vender', 'ProdutoController@index');
 Route::get('gerenciarClientes', 'ClienteController@index');
+Route::get('dashboard', 'VendaController@index');
 Route::get('lista-produtos', 'ProdutoController@indexLista')->name('lista-produtos');
 
 
@@ -46,6 +47,7 @@ Route::get('lista-produtos', 'ProdutoController@indexLista')->name('lista-produt
 Route::post('ingrediente', 'IngredientesController@store');
 Route::post('Produto', 'ProdutoController@store');
 Route::post('Cliente', 'ClienteController@store');
+Route::post('Venda', 'VendaController@store');
 
 
 Route::get('/precificador/excluir/{id}', 'IngredientesController@destroy');

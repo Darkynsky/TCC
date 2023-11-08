@@ -16,17 +16,18 @@
                 
             <div class="produto_part3exibe">
                 <p class="valor_do_produto">R$ {{ $p->valor_venda }}</p>
-                <button>Add</button>
+                <button  class="add-to-cart">Add</button>
             </div>
         </div>
     @endforeach
 </div>
     <div class="carrinho">
 
-        <form action="">
+        <form action="/Venda" method="post">
+            {{ csrf_field() }}
             <label for="txVendaCliente">Cliente: </label>
             <select name="txVendaCliente" id="txVendaCliente">
-                <option value="">----------</option>
+                <option value="0">Desconhecido</option>
                 @foreach($cliente as $cli)
                 <option value="{{$cli->idCliente}}">{{$cli->cliente}}</option>
                 @endforeach
@@ -52,16 +53,12 @@
                 <option value="Pago">Pago</option>
             </select>       
                 
-            <table>
+            <table class="carrinho_lista" id="cart-table">
                 <tr>
                     <th>Produto</th>
                     <th>Quantidade</th>
+                    <th>Valor de Venda</th>
                     <th>Valor Total</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><input type="number" name="txQtd" id="txQtd"></td>
-                    <td></td>
                 </tr>
             </table>
 
@@ -78,5 +75,14 @@
         </form>
     </div>
 
-        
+    <script src="/js/scriptcarrinho.js"></script> 
+
+
+
+
+
+
+
+
+
 @endsection
