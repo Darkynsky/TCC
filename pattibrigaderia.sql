@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 08-Nov-2023 às 19:17
+-- Tempo de geração: 10-Nov-2023 às 14:48
 -- Versão do servidor: 5.7.36
 -- versão do PHP: 7.4.26
 
@@ -20,6 +20,24 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `pattibrigaderia`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tbcarrinho`
+--
+
+DROP TABLE IF EXISTS `tbcarrinho`;
+CREATE TABLE IF NOT EXISTS `tbcarrinho` (
+  `idCarrinho` int(11) NOT NULL AUTO_INCREMENT,
+  `idProduto` int(11) DEFAULT NULL,
+  `qtd` int(11) DEFAULT NULL,
+  `valor_unitario` decimal(10,2) DEFAULT NULL,
+  `valor_total` decimal(10,2) DEFAULT NULL,
+  `idVenda` int(11) NOT NULL,
+  PRIMARY KEY (`idCarrinho`),
+  KEY `idProduto` (`idProduto`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -185,32 +203,37 @@ DROP TABLE IF EXISTS `tbvenda`;
 CREATE TABLE IF NOT EXISTS `tbvenda` (
   `idVenda` int(11) NOT NULL AUTO_INCREMENT,
   `idCliente` int(11) DEFAULT NULL,
-  `idProduto` int(11) DEFAULT NULL,
-  `qtdProduto` int(11) DEFAULT NULL,
-  `valorTotalProduto` decimal(10,2) DEFAULT NULL,
   `tpVenda` varchar(100) DEFAULT NULL,
   `dtVenda` date DEFAULT NULL,
   `dtEntrega` date DEFAULT NULL,
   `status` varchar(20) DEFAULT NULL,
   `idFPagamento` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idVenda`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`idVenda`),
+  KEY `idCliente` (`idCliente`),
+  KEY `idFPagamento` (`idFPagamento`)
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `tbvenda`
 --
 
-INSERT INTO `tbvenda` (`idVenda`, `idCliente`, `idProduto`, `qtdProduto`, `valorTotalProduto`, `tpVenda`, `dtVenda`, `dtEntrega`, `status`, `idFPagamento`) VALUES
-(1, 0, NULL, NULL, NULL, 'Pronta entrega', '2023-11-08', '2023-11-08', 'Pago', 4),
-(2, NULL, NULL, 2, '6.00', NULL, NULL, NULL, NULL, NULL),
-(3, NULL, NULL, 1, '3.00', NULL, NULL, NULL, NULL, NULL),
-(4, 2, NULL, NULL, NULL, 'Encomenda', '2023-11-08', '2023-11-29', 'Parcial', NULL),
-(5, NULL, NULL, 3, '9.00', NULL, NULL, NULL, NULL, NULL),
-(6, NULL, NULL, 5, '12.50', NULL, NULL, NULL, NULL, NULL),
-(7, 2, NULL, NULL, NULL, 'Pronta entrega', '2023-11-08', '2023-11-08', 'Pago', NULL),
-(8, NULL, NULL, 5, '12.50', NULL, NULL, NULL, NULL, NULL),
-(9, NULL, NULL, 15, '45.00', NULL, NULL, NULL, NULL, NULL),
-(10, NULL, NULL, 12, '36.00', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `tbvenda` (`idVenda`, `idCliente`, `tpVenda`, `dtVenda`, `dtEntrega`, `status`, `idFPagamento`) VALUES
+(1, 0, 'Pronta entrega', '2023-11-08', '2023-11-08', 'Pago', 4),
+(2, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 2, 'Encomenda', '2023-11-08', '2023-11-29', 'Parcial', NULL),
+(5, NULL, NULL, NULL, NULL, NULL, NULL),
+(6, NULL, NULL, NULL, NULL, NULL, NULL),
+(7, 2, 'Pronta entrega', '2023-11-08', '2023-11-08', 'Pago', NULL),
+(8, NULL, NULL, NULL, NULL, NULL, NULL),
+(9, NULL, NULL, NULL, NULL, NULL, NULL),
+(10, NULL, NULL, NULL, NULL, NULL, NULL),
+(11, 2, 'Pronta entrega', '2023-11-08', '2023-11-08', 'Pago', NULL),
+(12, NULL, NULL, NULL, NULL, NULL, NULL),
+(13, NULL, NULL, NULL, NULL, NULL, NULL),
+(14, 3, 'Pronta entrega', '2023-11-10', '2023-11-10', 'Pago', 3),
+(15, 3, 'Pronta entrega', '2023-11-10', '2023-11-10', 'Pago', 3),
+(16, 3, 'Pronta entrega', '2023-11-10', '2023-11-10', 'Pago', 3);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
