@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 10-Nov-2023 às 14:48
+-- Tempo de geração: 13-Nov-2023 às 19:34
 -- Versão do servidor: 5.7.36
 -- versão do PHP: 7.4.26
 
@@ -37,7 +37,19 @@ CREATE TABLE IF NOT EXISTS `tbcarrinho` (
   `idVenda` int(11) NOT NULL,
   PRIMARY KEY (`idCarrinho`),
   KEY `idProduto` (`idProduto`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `tbcarrinho`
+--
+
+INSERT INTO `tbcarrinho` (`idCarrinho`, `idProduto`, `qtd`, `valor_unitario`, `valor_total`, `idVenda`) VALUES
+(1, 6, 1, '3.00', '3.00', 1),
+(2, 8, 3, '3.00', '9.00', 1),
+(3, 9, 2, '3.00', '6.00', 1),
+(4, 6, 2, '3.00', '6.00', 2),
+(5, 8, 2, '3.00', '6.00', 2),
+(6, 9, 3, '3.00', '9.00', 2);
 
 -- --------------------------------------------------------
 
@@ -58,15 +70,15 @@ CREATE TABLE IF NOT EXISTS `tbcliente` (
   `email` varchar(200) DEFAULT NULL,
   `bairro` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`idCliente`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `tbcliente`
 --
 
 INSERT INTO `tbcliente` (`idCliente`, `cliente`, `celular`, `municipio`, `cep`, `logradouro`, `numero`, `complemento`, `email`, `bairro`) VALUES
-(2, 'teste NOme', '9000000009', 'são paulo', '08150350', 'rua de teste', 3000, 'casa teste 1', 'teste@teste.com', NULL),
-(3, 'Vinicius Telles', '11977825356', 'São Paulo', '08150350', 'Rua Samuel Pedro dos Santos', 114, 'Casa 4', 'telles861@gmail.com', 'Jardim Robru');
+(1, 'Vinicius Telles', '11977825356', 'São Paulo', '08150350', 'Rua Samuel Pedro dos Santos', 114, 'casa 4', 'telles861@gmail.com', 'Jardim Robru'),
+(2, 'Desconhecido', '00000000', '-----------', '000000000', '--------------', 0, '-----', '------------', '---------------');
 
 -- --------------------------------------------------------
 
@@ -165,16 +177,16 @@ CREATE TABLE IF NOT EXISTS `tbproduto` (
   `foto` varchar(1000) DEFAULT NULL,
   `categoria` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`idProduto`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `tbproduto`
 --
 
 INSERT INTO `tbproduto` (`idProduto`, `produto`, `descricao`, `valor_unitario`, `valor_venda`, `foto`, `categoria`) VALUES
-(1, 'Brigadeiro de Capim Santo', 'Brigadeiro feito com capim santo e enrolado em amêndoa laminada', '2.82', '3.00', '5a0f6dd5252b900d2110170730e22e2e.png', NULL),
-(2, 'Brigadeiro casadinho', 'Misturado', '2.30', '3.00', '0a4e714f9427936152bec7b7aa92aebc.png', NULL),
-(5, 'teste carrinho 2', NULL, '2.00', '2.50', NULL, 'Brigadeiro');
+(6, 'Capim Santo', 'Brigadeiro feito com capim santo e enrolado em amêndoa laminada', '3.00', '3.00', '5f36c106c796ebacf30feaf10808bea0.png', 'Brigadeiro'),
+(8, 'Tradicional', 'Brigadeiro tradicional', '3.00', '3.00', '45f4f041e29c1e4015132e797936c776.png', 'Brigadeiro'),
+(9, 'Maracujá', 'Brigadeiro feito com maracujá', '3.00', '3.00', '2557e866c55fc0cd88e3439cce849307.png', 'Brigadeiro');
 
 -- --------------------------------------------------------
 
@@ -188,10 +200,17 @@ CREATE TABLE IF NOT EXISTS `tbusuario` (
   `nome` varchar(100) DEFAULT NULL,
   `usuario` varchar(100) DEFAULT NULL,
   `senha` varchar(1000) DEFAULT NULL,
-  `celular` varchar(20) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
+  `perfil` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`idUsuario`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `tbusuario`
+--
+
+INSERT INTO `tbusuario` (`idUsuario`, `nome`, `usuario`, `senha`, `perfil`) VALUES
+(1, 'Administrador', 'admin', 'senhatesteadmin123', 'administrador'),
+(2, 'Vinicius', 'viniteste123', 'testesenha123', 'funcionario');
 
 -- --------------------------------------------------------
 
@@ -208,32 +227,19 @@ CREATE TABLE IF NOT EXISTS `tbvenda` (
   `dtEntrega` date DEFAULT NULL,
   `status` varchar(20) DEFAULT NULL,
   `idFPagamento` int(11) DEFAULT NULL,
+  `totalVenda` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`idVenda`),
   KEY `idCliente` (`idCliente`),
   KEY `idFPagamento` (`idFPagamento`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `tbvenda`
 --
 
-INSERT INTO `tbvenda` (`idVenda`, `idCliente`, `tpVenda`, `dtVenda`, `dtEntrega`, `status`, `idFPagamento`) VALUES
-(1, 0, 'Pronta entrega', '2023-11-08', '2023-11-08', 'Pago', 4),
-(2, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 2, 'Encomenda', '2023-11-08', '2023-11-29', 'Parcial', NULL),
-(5, NULL, NULL, NULL, NULL, NULL, NULL),
-(6, NULL, NULL, NULL, NULL, NULL, NULL),
-(7, 2, 'Pronta entrega', '2023-11-08', '2023-11-08', 'Pago', NULL),
-(8, NULL, NULL, NULL, NULL, NULL, NULL),
-(9, NULL, NULL, NULL, NULL, NULL, NULL),
-(10, NULL, NULL, NULL, NULL, NULL, NULL),
-(11, 2, 'Pronta entrega', '2023-11-08', '2023-11-08', 'Pago', NULL),
-(12, NULL, NULL, NULL, NULL, NULL, NULL),
-(13, NULL, NULL, NULL, NULL, NULL, NULL),
-(14, 3, 'Pronta entrega', '2023-11-10', '2023-11-10', 'Pago', 3),
-(15, 3, 'Pronta entrega', '2023-11-10', '2023-11-10', 'Pago', 3),
-(16, 3, 'Pronta entrega', '2023-11-10', '2023-11-10', 'Pago', 3);
+INSERT INTO `tbvenda` (`idVenda`, `idCliente`, `tpVenda`, `dtVenda`, `dtEntrega`, `status`, `idFPagamento`, `totalVenda`) VALUES
+(1, 2, 'Pronta entrega', '2023-11-13', '2023-11-13', 'Pago', 1, '18.00'),
+(2, 1, 'Encomenda', '2023-11-13', '2023-11-23', 'Parcial', 3, '21.00');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
