@@ -3,6 +3,8 @@
 
 
 <table class="table_vendas">
+
+    @foreach($vendas as $v)
     <tr>
         <th>ID</th>
         <th>Cliente</th>
@@ -13,7 +15,7 @@
         <th>Forma de Pagamento</th>
         <th>Status</th>
     </tr>
-    @foreach($vendas as $v)
+
     <tr>
         <td>{{$v->idVenda}}</td>
         <td>{{$v->cliente}}</td>
@@ -24,6 +26,26 @@
         <td>{{$v->fPagamento}}</td>
         <td>{{$v->status}}</td>
     </tr>
+
+    <tr>
+        <th></th>
+        <th></th>
+        <th>produto</th>
+        <th>quantidade</th>
+        <th>Valor total do produto</th>
+    </tr>
+        @foreach($carrinho as $c)
+            @if($c->idVenda == $v->idVenda)
+
+                <tr>
+                    <td>{{$v->idVenda}}</td>
+                    <td>{{$v->cliente}}</td>
+                    <td>{{$c->produto}}</td>
+                    <td>{{$c->qtd}}</td>
+                    <td>{{$c->valor_total}}</td>
+                </tr>
+            @endif
+    @endforeach
     
     @endforeach
 </table>

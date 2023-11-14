@@ -26,8 +26,13 @@ class VendaController extends Controller
             ->join('tbFPagamento', 'tbVenda.idFPagamento', '=', 'tbFPagamento.idFPagamento')
             ->select('tbVenda.*', 'tbCliente.cliente', 'tbFPagamento.fPagamento')
             ->get();
+            
+            $carrinho = DB::table('tbcarrinho')
+            ->join('tbProduto', 'tbCarrinho.idProduto','=','tbProduto.idProduto')
+            ->select('tbCarrinho.*','tbProduto.produto')
+            ->get();
 
-        return view('dashboard', compact('vendas'));
+        return view('dashboard', compact('vendas','carrinho'));
     }
 
     /**
