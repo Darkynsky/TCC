@@ -31,8 +31,16 @@ class VendaController extends Controller
             ->join('tbProduto', 'tbCarrinho.idProduto','=','tbProduto.idProduto')
             ->select('tbCarrinho.*','tbProduto.produto')
             ->get();
+        
+            $carrinhoGrafico = DB::table('tbcarrinho')
+                ->join('tbproduto', 'tbcarrinho.idProduto', '=', 'tbproduto.idProduto')
+                ->select('tbproduto.produto', DB::raw('SUM(tbcarrinho.qtd) as totalQtd'))
+                ->groupBy('tbcarrinho.idProduto', 'tbproduto.produto')
+                ->get();
 
-        return view('dashboard', compact('vendas','carrinho'));
+
+
+        return view('dashboard', compact('vendas','carrinho','carrinhoGrafico'));
     }
 
     /**
@@ -139,7 +147,9 @@ class VendaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $venda = Venda::find($id);
+
+        return view('dashboard.edit', compact('venda'));
     }
 
     /**
@@ -149,9 +159,17 @@ class VendaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateStatus(Request $request, $id)
     {
-        //
+        // Validação dos dados
+        $this->validate($request, [
+            'txStatus' => 'required',
+        ]);
+
+        // Encontra a venda pelo ID e atualiza apenas o campo 'status'
+        Venda::where('idVenda', $id)->update(['status' => $request->input('txStatus')]);
+
+        return redirect('/dashboard')->with('success', 'Status da venda atualizado com sucesso!');
     }
 
     /**

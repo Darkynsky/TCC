@@ -49,6 +49,7 @@ nav button{
     background: var(--cor-5);
     color: var(--cor-6);
     border: solid 1px var(--cor-6);
+    font-style: oblique;
 
 }
 nav button:hover{
@@ -279,6 +280,11 @@ input[type="file"] {
     flex-wrap: wrap;
     width: 100%;
 }
+.vitrine  h1{    
+    font-style: oblique;
+    color: var(--cor-4);
+    text-shadow: 0 0 10px var(--cor-6);
+}
 .box_exibidor_produto{
     background: var(--cor-8);
     border: 1px solid var(--cor-6);
@@ -302,6 +308,7 @@ input[type="file"] {
     min-height: 7vmax;
     text-align: left;
     text-wrap: wrap;
+    font-style: oblique;
 }
 .produto_part3exibe{
     width: 100%;
@@ -343,17 +350,81 @@ input[type="file"] {
 
 /*  CARRINHO  */
 .carrinho{
-    justify-content: center;
+    border-radius: 10px;
     display:flex;
+    flex-direction: column;
     flex-wrap: wrap;
-    padding: 2%;
-    border: 2px solid red;
+    padding: 1%;
+    background: var(--cor-7);
+    color: var(--cor-2);
+    width: 100%;
+    border: 1px solid var(--cor-6);
+    box-shadow: 0 0 20px var(--cor-6);
 }
+
 .carrinho select{
     width: auto;
+    background: var(--cor-5);
+}
+.carrinho label{
+    display: flex;
+    flex-wrap: wrap;
+    padding: .5%;
+    float: left;
+    font-size: large;
+    font-style: oblique;
 }
 .carrinho_lista{
+    clear: both;
     width: 100%;
+    text-align: center;
+    font-style: oblique;
+    border: 1px solid var(--cor-6);
+}
+.carrinho_lista th{
+    background: var(--cor-4);
+    color: var(--cor-5);
+}
+.carrinho_lista td{
+    background: var(--cor-5);
+    color: var(--cor-6);
+}
+.carrinho button{
+    width: 100%;
+    padding: 1%;
+    border: 1px solid var(--cor-6);
+    background: var(--cor-7);
+    color: var(--cor-6);
+    border-radius: 20px;
+    text-align: center;
+    font-size: large;
+}
+.carrinho_lista input[type=number],[type=text]{
+    width: 10vmax;
+    text-align: center;
+    color:var(--cor-6);
+    border: none;
+}
+.carrinho input[type=text]{
+    border: var(--cor-6);
+}
+.carrinho input[type=date]{
+    border:1px solid var(--cor-6);
+    color:var(--cor-6);
+}
+.carrinho input[type=submit]{
+    width: 100%;
+    padding: 1%;
+    border: 1px solid var(--cor-6);
+    background: var(--cor-5);
+    color: var(--cor-6);
+    border-radius: 20px;
+    text-align: center;
+}
+.carrinho input[type=submit]:hover{
+    cursor: pointer;
+    background: var(--cor-3);
+    color: var(--cor-5);
 }
 
 
@@ -440,18 +511,25 @@ input[type="file"] {
 /* PÁGINA DE RELATORIO */
 .table_vendas{
     width: 100%;
-    background: var(--cor-6);
-}
-.table_vendas th{
-    background: var(--cor-2);
-    color: var(--cor-5);
-}
-.table_vendas td:nth-child(odd) {
-	background:var(--cor-5);
-    color: var(--cor-8);
 }
 
-.table_vendas td:nth-child(even){
-	background:var(--cor-8);
+.venda_relatorio th{
+    background: var(--cor-4);
     color: var(--cor-5);
+}
+.venda_relatorio td{
+    background: var(--cor-5);
+    color: var(--cor-2);
+    border: 1px solid var(--cor-8);
+    
+}
+
+
+.carrinho_relatorio th{
+    background: var(--cor-8);
+    color: var(--cor-5);
+}
+.carrinho_relatorio td{
+    background: var(--cor-1);
+    
 }

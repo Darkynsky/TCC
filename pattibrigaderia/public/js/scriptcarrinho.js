@@ -50,6 +50,20 @@ document.addEventListener("DOMContentLoaded", function () {
                     txTotalProduto.readOnly = true;
                     cell4.appendChild(txTotalProduto);
 
+                    // Adiciona o botão "Remover" na nova linha
+                    const removeButton = document.createElement("button");
+                    removeButton.textContent = "X";
+                    removeButton.addEventListener("click", function () {
+                        // Remove a linha ao clicar no botão "Remover"
+                        cartTable.deleteRow(newRow.rowIndex);
+                        // Atualiza o total após remover o item
+                        updateTotal();
+                    });
+
+                    // Adiciona a célula do botão "Remover"
+                    const cell5 = newRow.insertCell(4);
+                    cell5.appendChild(removeButton);
+
                     // Campo oculto para armazenar o ID do produto
                     const txIdProduto = document.createElement("input");
                     txIdProduto.type = "hidden";

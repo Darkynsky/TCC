@@ -62,6 +62,10 @@ Route::get('/produto-editar/editar/{id}', 'ProdutoController@show');
 Route::put('Produto/{id}', 'ProdutoController@update')->name('produto.update');
 
 
+Route::get('/vender/{id}/edit', 'VendaController@edit')->name('venda.edit');
+Route::put('/venda/{id}', 'VendaController@updateStatus')->name('venda.update');
+
+
 
 
 

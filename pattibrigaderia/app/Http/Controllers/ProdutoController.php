@@ -20,10 +20,13 @@ class ProdutoController extends Controller
      */
     public function index()
     {        
-        $produto = Produto::all();
+        $produtos = Produto::all();
+        $produtosPorCategoria = $produtos->groupBy('categoria');
+
+
         $cliente = Cliente::all();
         $fpagamento = FPagamento::all();
-        return view('vender', compact('produto','cliente', 'fpagamento'));
+        return view('vender', compact('produtosPorCategoria','cliente', 'fpagamento'));
     }
     public function indexLista()
     {
