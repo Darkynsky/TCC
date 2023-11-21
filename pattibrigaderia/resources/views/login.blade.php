@@ -2,7 +2,7 @@
 @extends('layouts.layout-login')
 @section('content')
 
-    <form method="POST" action="">
+    <form method="POST" action="{{ route('login') }}">
         {{ csrf_field() }}
 
         <h1>Login</h1>

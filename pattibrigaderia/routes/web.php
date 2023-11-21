@@ -11,19 +11,21 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+/*ROTAS DE AUTENTICAÇÃO*/
 
 
-
-/*ROTAS NORMAIS*/
 Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('login', function () {
-    return view('login');
+    return view('vender');
 });
 Route::get('vender', function () {
     return view('vender');
 });
+
+
+
+/* OUTRAS ROTAS */
+
+
 Route::get('precificador', function () {
     return view('precificador');
 });
@@ -40,7 +42,11 @@ Route::get('dashboard', function () {
 
 
 Route::get('precificador', 'IngredientesController@index');
+
+Route::get('/', 'ProdutoController@index');
 Route::get('vender', 'ProdutoController@index');
+
+
 Route::get('gerenciarClientes', 'ClienteController@index');
 Route::get('dashboard', 'VendaController@index');
 Route::get('lista-produtos', 'ProdutoController@indexLista')->name('lista-produtos');
@@ -54,12 +60,14 @@ Route::post('Venda', 'VendaController@store');
 
 
 Route::get('/precificador/excluir/{id}', 'IngredientesController@destroy');
+
 Route::get('/lista-produtos/excluir/{id}', 'ProdutoController@destroy');
+Route::get('/produto/editar/{id}', 'ProdutoController@edit');
+Route::put('/produto/{id}', 'ProdutoController@update');
+
 Route::get('/gerenciarClientes/excluir/{id}', 'ClienteController@destroy');
-
-
-Route::get('/produto-editar/editar/{id}', 'ProdutoController@show');
-Route::put('Produto/{id}', 'ProdutoController@update')->name('produto.update');
+Route::get('/cliente/editar/{id}', 'ClienteController@edit');
+Route::put('/cliente/{id}', 'ClienteController@update');
 
 
 Route::get('/vender/{id}/edit', 'VendaController@edit')->name('venda.edit');

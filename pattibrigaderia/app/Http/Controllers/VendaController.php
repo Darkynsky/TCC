@@ -25,6 +25,7 @@ class VendaController extends Controller
             ->join('tbCliente', 'tbVenda.idCliente', '=', 'tbCliente.idCliente')
             ->join('tbFPagamento', 'tbVenda.idFPagamento', '=', 'tbFPagamento.idFPagamento')
             ->select('tbVenda.*', 'tbCliente.cliente', 'tbFPagamento.fPagamento')
+            ->orderBy('tbVenda.idVenda', 'desc') // Adicione esta linha para ordenar por idVenda (ou 'asc' para ordem ascendente)
             ->get();
             
             $carrinho = DB::table('tbcarrinho')

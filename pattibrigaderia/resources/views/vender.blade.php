@@ -21,7 +21,7 @@
         <input type="date" name="txDataPed" id="txDataPed"></label>
 
         <label for="txDataEnt">Data da Entrega 
-        <input type="date" name="txDataEnt" id="txDataEnt"></label>
+        <input type="date" name="txDataEnt" id="txDataEnt" required></label>
 
         
            
@@ -41,15 +41,14 @@
 
         
         <label for="txFPagamento">Forma de Pagamento 
-        <select name="txFPagamento" id="txFPagamento">
-            <option value=""></option>
+        <select name="txFPagamento" id="txFPagamento" require>
             @foreach($fpagamento as $pag)
             <option value="{{$pag->idFPagamento}}">{{$pag->fPagamento}}</option>
             @endforeach
         </select></label>
         
         <label for="txStatus">Status
-        <select name="txStatus" id="txStatus">
+        <select name="txStatus" id="txStatus" require>
             <option value="Não Pago">Não Pago</option>
             <option value="Parcial">Parcial</option>
             <option value="Pago">Pago</option>

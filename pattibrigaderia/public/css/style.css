@@ -284,6 +284,7 @@ input[type="file"] {
     font-style: oblique;
     color: var(--cor-4);
     text-shadow: 0 0 10px var(--cor-6);
+    margin-top: 1.5%;
 }
 .box_exibidor_produto{
     background: var(--cor-8);
@@ -399,7 +400,14 @@ input[type="file"] {
     text-align: center;
     font-size: large;
 }
-.carrinho_lista input[type=number],[type=text]{
+.carrinho_lista input[type=number]{
+    width: 10vmax;
+    text-align: center;
+    color:var(--cor-6);
+    border: none;
+    box-shadow: 0 0 10px var(--cor-6);
+}
+.carrinho_lista [type=text]{
     width: 10vmax;
     text-align: center;
     color:var(--cor-6);
@@ -454,22 +462,18 @@ input[type="file"] {
     text-align: center;
 }
 
-
-
-
 #formCliente{
     padding: 10px;
-    text-align: center;
-}
-#formCliente label{
+    text-align: left;
     margin-left: auto;
     margin-right: auto;
+}
+#formCliente label{
     text-align: left;
 }
 .groupForm{
     padding: 1px;
     flex-wrap: wrap;
-    text-align: center;
 }
 #formCliente h1{
     text-align: center;
@@ -510,6 +514,7 @@ input[type="file"] {
 
 /* PÁGINA DE RELATORIO */
 .table_vendas{
+    display: flex;
     width: 100%;
 }
 
@@ -523,8 +528,12 @@ input[type="file"] {
     border: 1px solid var(--cor-8);
     
 }
-
-
+.venda_relatorio button{
+    cursor: pointer;
+}
+.carrinho_relatorio.escondido {
+    display: none;
+}
 .carrinho_relatorio th{
     background: var(--cor-8);
     color: var(--cor-5);

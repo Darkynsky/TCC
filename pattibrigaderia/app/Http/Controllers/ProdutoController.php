@@ -33,11 +33,6 @@ class ProdutoController extends Controller
         $produto = Produto::all();
         return view('lista-produtos', compact('produto'));
     }
-    public function indexjson()
-    {        
-        $produto = Produto::all();
-        return $produto;
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -83,8 +78,7 @@ class ProdutoController extends Controller
      */
     public function show($id)
     {
-        $produto = Produto::find($id);
-        return view('produto-editar', compact('produto'));
+        //
     }
 
     /**
@@ -95,7 +89,8 @@ class ProdutoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $produto = Produto::find($id);
+        return view('editarProduto', compact('produto'));
     }
 
     /**
@@ -107,7 +102,36 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $produto = Produto::find($id);
+
+        if (!$produto) {
+            // Produto não encontrado, você pode redirecionar ou lidar com isso de outra forma
+            return redirect('/lista-produtos')->with('error', 'Produto não encontrado');
+        }
+
+        $produto->produto = $request->input('txNomeProduto');
+        $produto->descricao = $request->input('txDescrProduto');
+        $produto->categoria = $request->input('txCategoria');
+        $produto->valor_unitario = $request->input('txValorSProduto');
+        $produto->valor_venda = $request->input('txValorVProduto');
+
+        // Verificar se uma nova imagem foi enviada
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            // Excluir a imagem anterior (se existir)
+            if ($produto->foto) {
+                Storage::delete('img/produtos/' . $produto->foto);
+            }
+
+            // Salvar a nova imagem
+            $extension = $request->image->extension();
+            $imageName = md5($request->image->getClientOriginalName() . strtotime("now")) . "." . $extension;
+            $request->image->move(public_path('img/produtos'), $imageName);
+            $produto->foto = $imageName;
+        }
+
+        $produto->save();
+
+        return redirect('/lista-produtos')->with('success', 'Produto atualizado com sucesso');
     }
 
     /**
@@ -122,4 +146,21 @@ class ProdutoController extends Controller
         Produto::where('idProduto',$id)->delete();
         return redirect('lista-produtos');
     }
+
+
+
+    /**  FUNÇÕES API  **/
+    
+    
+    public function indexApi()
+    {        
+        $produto = Produto::all();
+        return $produto;
+    }
+
+
+
+
+
+
 }

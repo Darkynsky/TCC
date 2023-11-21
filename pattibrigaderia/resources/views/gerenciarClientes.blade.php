@@ -1,7 +1,7 @@
 @extends('layouts.layoutdefault')
 @section('content')
 
-<div class="container_cliente_form">
+<div class="container_B">
     <form action="/Cliente" method="post" id="formCliente">
         {{ csrf_field() }}
         <h1>Cadastro de Clientes</h1>
@@ -70,7 +70,10 @@
             <td>{{$cli->email}}</td>
             <td>{{$cli->logradouro}},{{$cli->numero}} {{$cli->complemento}} - {{$cli->bairro}},{{$cli->municipio}}</td>
             <td>{{$cli->cep}}</td>
-            <td><a href="/gerenciarClientes/excluir/{{ $cli->idCliente }}"><img src="img/icon/excluir.png" class="icon_acoes"></a></td>
+            <td>
+                <a href="/gerenciarClientes/excluir/{{ $cli->idCliente }}"><img src="img/icon/excluir.png" class="icon_acoes"></a>
+                <a href="/cliente/editar/{{ $cli->idCliente }}"><img src="img/icon/editar.png" class="icon_acoes"></a>
+            </td>
         </tr>
         @endforeach
     </table>

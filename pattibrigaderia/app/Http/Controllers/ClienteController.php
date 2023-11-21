@@ -69,8 +69,10 @@ class ClienteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cliente = Cliente::find($id);
+        return view('editarCliente', compact('cliente'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -81,8 +83,20 @@ class ClienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cliente = Cliente::find($id);
+        $cliente->cliente = $request->input('txNomeCliente');
+        $cliente->celular = $request->input('txCelularCliente');
+        $cliente->cep = $request->input('txCepCliente');
+        $cliente->municipio = $request->input('txMunicipioCliente');
+        $cliente->logradouro = $request->input('txLogradouroCliente');
+        $cliente->bairro = $request->input('txBairroCliente');
+        $cliente->complemento = $request->input('txComplementoCsCliente');
+        $cliente->numero = $request->input('txNumeroCsCliente');
+        $cliente->email = $request->input('txEmailCliente');
+        $cliente->save();
+        return redirect('/gerenciarClientes');
     }
+
 
     /**
      * Remove the specified resource from storage.
