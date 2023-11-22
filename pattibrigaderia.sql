@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 13-Nov-2023 às 19:34
+-- Tempo de geração: 22-Nov-2023 às 18:48
 -- Versão do servidor: 5.7.36
 -- versão do PHP: 7.4.26
 
@@ -37,19 +37,39 @@ CREATE TABLE IF NOT EXISTS `tbcarrinho` (
   `idVenda` int(11) NOT NULL,
   PRIMARY KEY (`idCarrinho`),
   KEY `idProduto` (`idProduto`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `tbcarrinho`
 --
 
 INSERT INTO `tbcarrinho` (`idCarrinho`, `idProduto`, `qtd`, `valor_unitario`, `valor_total`, `idVenda`) VALUES
-(1, 6, 1, '3.00', '3.00', 1),
-(2, 8, 3, '3.00', '9.00', 1),
-(3, 9, 2, '3.00', '6.00', 1),
-(4, 6, 2, '3.00', '6.00', 2),
-(5, 8, 2, '3.00', '6.00', 2),
-(6, 9, 3, '3.00', '9.00', 2);
+(1, 6, 10, '3.00', '30.00', 1),
+(2, 8, 10, '3.00', '30.00', 1),
+(3, 9, 10, '3.00', '30.00', 1),
+(4, 9, 1, '3.00', '0.00', 2),
+(5, 8, 2, '3.00', '6.00', 3),
+(6, 9, 1, '3.00', '3.00', 4),
+(7, 8, 50, '3.00', '150.00', 5),
+(8, 6, 6, '3.00', '18.00', 6),
+(9, 8, 10, '3.00', '30.00', 6),
+(10, 9, 100, '3.00', '300.00', 6),
+(11, 6, 1, '3.00', '3.00', 7),
+(12, 8, 4, '3.00', '12.00', 7),
+(13, 9, 2, '3.00', '6.00', 7),
+(14, 6, 9, '3.00', '27.00', 8),
+(15, 8, 2, '3.00', '6.00', 8),
+(16, 9, 1, '3.00', '3.00', 8),
+(17, 8, 1, '3.00', '3.00', 9),
+(18, 9, 3, '3.00', '9.00', 9),
+(19, 6, 7, '3.00', '21.00', 10),
+(20, 11, 2, '3.00', '6.00', 10),
+(21, 9, 2, '3.00', '6.00', 10),
+(22, 13, 2, '3.00', '6.00', 10),
+(23, 8, 4, '3.00', '12.00', 10),
+(24, 12, 6, '3.00', '18.00', 10),
+(25, 6, 3, '3.00', '9.00', 11),
+(26, 16, 2, '3.00', '6.00', 11);
 
 -- --------------------------------------------------------
 
@@ -70,15 +90,15 @@ CREATE TABLE IF NOT EXISTS `tbcliente` (
   `email` varchar(200) DEFAULT NULL,
   `bairro` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`idCliente`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `tbcliente`
 --
 
 INSERT INTO `tbcliente` (`idCliente`, `cliente`, `celular`, `municipio`, `cep`, `logradouro`, `numero`, `complemento`, `email`, `bairro`) VALUES
-(1, 'Vinicius Telles', '11977825356', 'São Paulo', '08150350', 'Rua Samuel Pedro dos Santos', 114, 'casa 4', 'telles861@gmail.com', 'Jardim Robru'),
-(2, 'Desconhecido', '00000000', '-----------', '000000000', '--------------', 0, '-----', '------------', '---------------');
+(1, 'Vinicius Telles de Freitas', '11977825356', 'São Paulo', '08150350', 'Rua Samuel Pedro dos Santos', 114, 'casa 4', 'telles861@gmail.com', 'Jardim Robru'),
+(2, 'unknown', '00000000', '-----------', '000000000', '--------------', 0, '-----', '------------', '---------------');
 
 -- --------------------------------------------------------
 
@@ -177,16 +197,23 @@ CREATE TABLE IF NOT EXISTS `tbproduto` (
   `foto` varchar(1000) DEFAULT NULL,
   `categoria` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`idProduto`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `tbproduto`
 --
 
 INSERT INTO `tbproduto` (`idProduto`, `produto`, `descricao`, `valor_unitario`, `valor_venda`, `foto`, `categoria`) VALUES
-(6, 'Capim Santo', 'Brigadeiro feito com capim santo e enrolado em amêndoa laminada', '3.00', '3.00', '5f36c106c796ebacf30feaf10808bea0.png', 'Brigadeiro'),
-(8, 'Tradicional', 'Brigadeiro tradicional', '3.00', '3.00', '45f4f041e29c1e4015132e797936c776.png', 'Brigadeiro'),
-(9, 'Maracujá', 'Brigadeiro feito com maracujá', '3.00', '3.00', '2557e866c55fc0cd88e3439cce849307.png', 'Brigadeiro');
+(6, 'Brigadeiro de Capim Santo', 'Brigadeiro feito com capim santo e passado em amêndoa laminada', '3.00', '3.00', '5f36c106c796ebacf30feaf10808bea0.png', 'Brigadeiro'),
+(10, 'Brigadeiro de Café', 'Brigadeiro feito com café e passado em confeitos de chocolate amargo.', '3.00', '3.00', '52b768c7a419644577688f8252e1971f.png', 'Brigadeiro'),
+(8, 'Brigadeiro Tradicional', 'Brigadeiro tradicional', '3.00', '3.00', '45f4f041e29c1e4015132e797936c776.png', 'Brigadeiro'),
+(9, 'Brigadeiro de Maracujá', 'Brigadeiro feito com maracujá', '3.00', '3.00', '7d5ce3a9b37a2c6c875c083aeadf4c90.png', 'Brigadeiro'),
+(11, 'Brigadeiro Ferrerinho', 'Brigadeiro tradicional com avelã e nutella.', '3.00', '3.00', '0fa75bcadac896c4cf23e271d968bd18.png', 'Brigadeiro'),
+(12, 'Brigadeiro Crocante', 'Brigadeiro feito com amendoim.', '3.00', '3.00', 'ea83eb04715f9d69cedb141197770c74.png', 'Brigadeiro'),
+(13, 'Brigadeiro de Nutella', 'Brigadeiro feito com Nutella', '3.00', '3.00', 'd79a6ee324e112ebe194f705e8b79b23.png', 'Brigadeiro'),
+(14, 'Brigadeiro de Paçoca', 'Brigadeiro feito com paçoca e passado na paçoca.', '3.00', '3.00', 'ccb97c55b0dd8f117b44540713ec1da5.png', 'Brigadeiro'),
+(15, 'Brigadeiro Tradicional(Confete)', 'Brigadeiro tradicional com confetes.', '3.00', '3.00', 'c07fb1035f52894b3057c0573c405ea4.png', 'Brigadeiro'),
+(16, 'Brigaderio Frutas do Bosque', 'Brigadeiro de frutas do bosque passado em açúcar vermelho.', '3.00', '3.00', '4fb5f4674fc11b0b4f5ed161fa45a213.png', 'Brigadeiro');
 
 -- --------------------------------------------------------
 
@@ -231,15 +258,24 @@ CREATE TABLE IF NOT EXISTS `tbvenda` (
   PRIMARY KEY (`idVenda`),
   KEY `idCliente` (`idCliente`),
   KEY `idFPagamento` (`idFPagamento`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `tbvenda`
 --
 
 INSERT INTO `tbvenda` (`idVenda`, `idCliente`, `tpVenda`, `dtVenda`, `dtEntrega`, `status`, `idFPagamento`, `totalVenda`) VALUES
-(1, 2, 'Pronta entrega', '2023-11-13', '2023-11-13', 'Pago', 1, '18.00'),
-(2, 1, 'Encomenda', '2023-11-13', '2023-11-23', 'Parcial', 3, '21.00');
+(1, 3, 'Encomenda', '2023-11-15', '2023-11-18', 'Pago', 3, '90.00'),
+(2, 2, 'Encomenda', '2023-11-15', '2023-11-15', 'Pago', 2, '0.00'),
+(3, 1, 'Pronta entrega', '2023-11-15', '2023-11-16', 'Pago', 2, '6.00'),
+(4, 2, 'Pronta entrega', '2023-11-15', '2023-11-15', 'Não Pago', 1, '3.00'),
+(5, 1, 'Pronta entrega', '2023-11-16', '2023-11-16', 'Pago', 3, '150.00'),
+(6, 3, 'Encomenda', '2023-11-16', '2023-11-23', 'Parcial', 3, '348.00'),
+(7, 1, 'Pronta entrega', '2023-11-20', '2023-11-20', 'Pago', 1, '21.00'),
+(8, 1, 'Encomenda', '2023-11-20', '2023-11-21', 'Não Pago', 1, '36.00'),
+(9, 2, 'Pronta entrega', '2023-11-20', '2023-11-21', 'Pago', 1, '12.00'),
+(10, 1, 'Pronta entrega', '2023-11-21', '2023-11-21', 'Pago', 1, '69.00'),
+(11, 1, 'Pronta entrega', '2023-11-21', '2023-11-21', 'Não Pago', 1, '15.00');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
