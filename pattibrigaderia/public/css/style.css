@@ -439,7 +439,6 @@ input[type="file"] {
 /* PAGINA LISTA-PRODUTOS */
 .table_lista{
     margin-top: 1%;
-    background: var(--cor-3);
     border: 2px solid var(--cor-4);
     border-radius: 5px;
 }
@@ -450,6 +449,7 @@ input[type="file"] {
     text-wrap: wrap;
 }
 .table_lista td{
+    border: 1px solid var(--cor-6);
     margin: 0;
     background: var(--cor-5);
     color: var(--cor-2);
@@ -541,4 +541,58 @@ input[type="file"] {
 .carrinho_relatorio td{
     background: var(--cor-1);
     
+}
+
+
+
+/* EDITORES DE DADOS */
+.container{    
+    padding: 1%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 0 50px var(--cor-6);
+}
+.container form{
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+    padding: 2%;
+}
+.container form input[type=text]{           
+    border: 1px solid var(--cor-2);
+    background: var(--cor-5);
+    color: var(--cor-2);
+    text-align: center;
+}
+.container form input[type=submit],
+.container form input[type=reset]{         
+    border: 1px solid var(--cor-2);
+    background: var(--cor-5);
+    color: var(--cor-2);
+    text-align: center;
+    border-radius: 15px;
+    padding: 1.5%;
+}
+.container form input[type=submit]:hover,
+.container form input[type=reset]:hover{
+    cursor: pointer;         
+    border: 1px solid var(--cor-5);
+    background: var(--cor-6);
+    color: var(--cor-5);
+}                           
+
+.container form select{
+    border: 1px solid var(--cor-2);
+    background: var(--cor-5);
+    color: var(--cor-2);
+    width: 100%;
+}
+.container form textarea{
+    border: 1px solid var(--cor-2);
+    background: var(--cor-5);
+    color: var(--cor-2);
+    max-width: 10vmax;
+    min-width: 10vmax;
+    max-height: 5vmax;
+    min-height: 5vmax;
 }

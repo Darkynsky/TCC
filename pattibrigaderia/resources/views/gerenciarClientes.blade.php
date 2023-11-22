@@ -1,7 +1,7 @@
 @extends('layouts.layoutdefault')
 @section('content')
 
-<div class="container_B">
+<div class="container">
     <form action="/Cliente" method="post" id="formCliente">
         {{ csrf_field() }}
         <h1>Cadastro de Clientes</h1>
@@ -51,7 +51,7 @@
 </div><br>
 
 
-<div class="container_A">    
+<div class="container_B">    
     <table class="tabela_cliente">
         <tr>
             <th>ID</th>

@@ -15,7 +15,7 @@
         <input type="text" name="txNomeProduto" value="{{ $produto->produto }}" required><br>
 
         <label for="txValorSProduto">Valor Sugerido:</label>
-        <input type="text" name="txValorSProduto" value="{{ $produto->valor_unitario }}" readonly="readonly"><br>
+        <input type="text" name="txValorSProduto" value="{{ $produto->valor_unitario }}"><br>
 
         <label for="txValorVProduto">Valor de Venda:</label>
         <input type="text" name="txValorVProduto" value="{{ $produto->valor_venda }}"><br>
