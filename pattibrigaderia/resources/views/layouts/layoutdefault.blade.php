@@ -17,7 +17,7 @@
         <a href="{{ url('lista-produtos') }}"><button>Gerenciar Produtos</button></a>
         <a href="{{ url('precificador') }}"><button>Precificar</button></a>
         <a href="{{ url('gerenciarClientes') }}"><button>Clientes</button></a>
-        <a href="{{ url('dashboard') }}"><button>Dashboard</button></a>
+        <a href="{{ url('dashboard') }}"><button>Resgistro de Vendas</button></a>
 
     </nav>
 

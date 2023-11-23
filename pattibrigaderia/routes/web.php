@@ -32,6 +32,10 @@ Route::get('precificador', function () {
 Route::get('lista-produtos', function () {
     return view('lista-produtos');
 });
+Route::get('lista-clientes', function(){
+    return view('lista-clientes');
+});
+
 Route::get('gerenciarClientes', function () {
     return view('gerenciarClientes');
 });
@@ -47,7 +51,7 @@ Route::get('/', 'ProdutoController@index');
 Route::get('vender', 'ProdutoController@index');
 
 
-Route::get('gerenciarClientes', 'ClienteController@index');
+Route::get('lista-clientes', 'ClienteController@index');
 Route::get('dashboard', 'VendaController@index');
 Route::get('lista-produtos', 'ProdutoController@indexLista')->name('lista-produtos');
 
