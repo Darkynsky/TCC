@@ -27,8 +27,9 @@
         chart.draw(data, options);
       }
     </script>
-
-    <div id="piechart" style="width: 700px; height: 500px; "></div>
+<div class="container_B">
+    <div id="piechart"></div>
+</div>
 
 <div class="container_A">
 

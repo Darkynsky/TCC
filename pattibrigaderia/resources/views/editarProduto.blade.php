@@ -1,6 +1,4 @@
-<!-- editarProduto.blade.php -->
-
-@extends('layouts.layoutdefault')
+@extends('layouts.layout-editores')
 @section('content')
 
 <div class="container">

@@ -42,25 +42,5 @@ class LoginController extends Controller
     }
 
     
-    public function index()
-    {
-        return view('login');
-    }
-
-    public function verifyUser(Request $request)
-    {
-        if (Auth::attempt(['email' => $request->input('txUsuario'), 'password' => $request->input('txSenha')])) {
-            return redirect()->intended('/home');
-        } else {
-            return redirect('/login')->with('error', 'Credenciais inválidas. Tente novamente.');
-        }
-    }
-
-
-
-    public function logoutUser(Request $request)
-    {
-        Auth::logout();
-        return redirect('/login');
-    }
+    
 }
